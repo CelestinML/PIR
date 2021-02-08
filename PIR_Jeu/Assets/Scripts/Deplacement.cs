@@ -8,7 +8,8 @@ public class Deplacement : MonoBehaviour
     private Transform transform;
     private float input;
 
-    public float speed = 10;
+    private float last_input = 0;
+    public float speed = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -20,11 +21,37 @@ public class Deplacement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        input = Input.GetAxis("Horizontal");
+        input = Input.GetAxisRaw("Horizontal");
     }
 
     private void FixedUpdate()
     {
-        transform.position += new Vector3(1, 0, 0) * Time.fixedDeltaTime * speed * input;
+        //Debug.Log(input);
+        //transform.position += new Vector3(1, 0, 0) * Time.fixedDeltaTime * speed * input;
+        if (input > 0)
+            MoveRight();
+        else if (input < -0)
+            MoveLeft();
+        else
+            DoNotMove();
+    }
+
+    //On définit chaque action possible clairement pour l'agent
+    public void MoveLeft()
+    {
+        last_input = Mathf.Lerp(last_input, -1, 2 * Time.fixedDeltaTime);
+        transform.position += new Vector3(last_input, 0, 0) * Time.fixedDeltaTime * speed;
+    }
+
+    public void MoveRight()
+    {
+        last_input = Mathf.Lerp(last_input, 1, 2 * Time.fixedDeltaTime);
+        transform.position += new Vector3(last_input, 0, 0) * Time.fixedDeltaTime * speed;
+    }
+
+    public void DoNotMove()
+    {
+        last_input = Mathf.Lerp(last_input, 0, 5 * Time.fixedDeltaTime);
+        transform.position += new Vector3(last_input, 0, 0) * Time.fixedDeltaTime * speed;
     }
 }

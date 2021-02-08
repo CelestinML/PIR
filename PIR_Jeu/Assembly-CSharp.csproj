@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Agent.cs" />
     <Compile Include="Assets\Scripts\ChuteAsteroide.cs" />
     <Compile Include="Assets\Scripts\Deplacement.cs" />
     <Compile Include="Assets\Scripts\InfosVaisseau.cs" />

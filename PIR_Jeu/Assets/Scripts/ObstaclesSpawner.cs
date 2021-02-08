@@ -57,6 +57,8 @@ public class ObstaclesSpawner : MonoBehaviour
                 asteroid.GetComponent<ChuteAsteroide>().rotation_speed = min_rotation_speed + Random.value * (max_rotation_speed - min_rotation_speed);
             else
                 asteroid.GetComponent<ChuteAsteroide>().rotation_speed = -(min_rotation_speed + Random.value * (max_rotation_speed - min_rotation_speed));
+            //We "show" the asteroid to the agent so he can avoid it
+            gameObject.GetComponent<Agent>().asteroids.Add(asteroid);
             //On active le script de déplacement de l'astéroide (après avoir déterminé les paramètres uniquement)
             asteroid.GetComponent<ChuteAsteroide>().enabled = true;
             remaining_positions.RemoveAt(position_number);

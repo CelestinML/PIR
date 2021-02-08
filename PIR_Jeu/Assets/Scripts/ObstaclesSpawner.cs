@@ -49,6 +49,7 @@ public class ObstaclesSpawner : MonoBehaviour
             int position_number = (int)Mathf.Floor(Random.value * remaining_positions.Count); //Les positions dans la liste sont entre 0 et 5
             //On instancie l'astéroide
             GameObject asteroid = Instantiate(asteroide1, remaining_positions[position_number], Quaternion.identity);
+            asteroid.transform.Rotate(new Vector3(0, 0, 1), Random.value * 360f);
             //On détermine la vitesse de chute de l'astéroide
             asteroid.GetComponent<ChuteAsteroide>().falling_speed = min_fall_speed + Random.value * (max_fall_speed-min_fall_speed);
             //On détermine la vitesse et le sens de rotation de l'astéroide

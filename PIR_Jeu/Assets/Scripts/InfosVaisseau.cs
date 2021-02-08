@@ -71,7 +71,7 @@ public class InfosVaisseau : MonoBehaviour
         {
             if (!max_speed_boost_block)
             {
-                Camera.main.GetComponent<ObstaclesSpawner>().max_fall_speed *= 2f;
+                Camera.main.GetComponent<ObstaclesSpawner>().max_fall_speed *= 1.5f;
                 max_speed_boost_block = true;
             }
         }

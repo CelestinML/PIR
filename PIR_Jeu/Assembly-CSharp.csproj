@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ChuteAsteroide.cs" />
     <Compile Include="Assets\Scripts\Deplacement.cs" />
+    <Compile Include="Assets\Scripts\InfosVaisseau.cs" />
     <Compile Include="Assets\Scripts\ObstaclesSpawner.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

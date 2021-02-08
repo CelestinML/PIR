@@ -33,8 +33,8 @@ public class ChuteAsteroide : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.SetActive(false);
-            Camera.main.GetComponent<ObstaclesSpawner>().enabled = false;
+            collision.gameObject.GetComponent<InfosVaisseau>().ReceiveDamage(1);
+            Destroy(gameObject);
         }
     }
 }

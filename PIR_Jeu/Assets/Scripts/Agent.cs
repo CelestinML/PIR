@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
-    //INPUT :
     public List<GameObject> asteroids;
+    public GameObject vaisseau;
+    //INPUT :
+
+    //Astéroides :
     /*
      * Coordonnées : asteroids[index].transform.position
      * Vitesse : asteroids[index].GetComponent<ChuteAsteroide>().falling_speed
      */
+    //Vaisseau :
+    /*
+     * Coordonnées : vaisseau.transform.position
+     * Vitesse courante ? Pas sûr que ce serait nécessaire
+     */
 
     //OUTPUT :
     //L'agent va effectuer des actions sur le vaisseau
-    public GameObject vaisseau;
+
     /*
      * Trois actions sont possibles :
      * - MoveLeft()

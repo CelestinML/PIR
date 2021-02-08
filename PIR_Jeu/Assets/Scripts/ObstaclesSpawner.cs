@@ -6,7 +6,7 @@ public class ObstaclesSpawner : MonoBehaviour
 {
     public GameObject asteroide1;
 
-    public float min_fall_speed = 1;
+    public float min_fall_speed = 3;
     public float max_fall_speed = 3;
 
     public float min_rotation_speed = 1;
@@ -40,7 +40,8 @@ public class ObstaclesSpawner : MonoBehaviour
 
     private void SpawnAsteroids()
     {
-        int number_of_asteroids = (int)(Random.value * 6f); //A chaque spawn d'asteroides, on détermine aléatoirement le nombre d'astéroides de la ligne
+        //On fait apparaître entre 1 et 5 astéroides par ligne
+        int number_of_asteroids = 1 + (int)(Random.value * 4f); //A chaque spawn d'asteroides, on détermine aléatoirement le nombre d'astéroides de la ligne
         List<Vector3> remaining_positions = new List<Vector3>(spawn_points);
         for (int i = 0; i < number_of_asteroids; i++)
         {

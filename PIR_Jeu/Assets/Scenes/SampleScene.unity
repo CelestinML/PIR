@@ -403,8 +403,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroide1: {fileID: 2174577356029533154, guid: 681fc8b634271bb42b362d5ca003f5fa,
     type: 3}
-  min_fall_speed: 1
-  max_fall_speed: 2
+  min_fall_speed: 3
+  max_fall_speed: 3
   min_rotation_speed: 1
   max_rotation_speed: 2
   spawn_period: 2

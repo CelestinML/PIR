@@ -941,6 +941,7 @@ GameObject:
   - component: {fileID: 1956508900}
   - component: {fileID: 1956508894}
   - component: {fileID: 1956508902}
+  - component: {fileID: 1956508903}
   m_Layer: 0
   m_Name: vaisseau
   m_TagString: Player
@@ -1159,3 +1160,17 @@ MonoBehaviour:
   score_ui: {fileID: 1190912598}
   points_de_vie: 3
   temps_invincibilite: 1
+--- !u!114 &1956508903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956508893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76ce26154be3393408be4a5e5d34833a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 4419135425159801260, guid: fbeb56e9ffefe5c4a8e4aa2da77e1566,
+    type: 3}

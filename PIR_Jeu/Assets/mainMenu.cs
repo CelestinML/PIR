@@ -7,11 +7,11 @@ public class mainMenu : MonoBehaviour
 {
     public void startGamePlayer()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("HumanPlayerScene");
     }
     public void startGameIA()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("AIPlayerScene");
     }
     public void quitGame()
     {

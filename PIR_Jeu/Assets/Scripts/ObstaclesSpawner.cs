@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObstaclesSpawner : MonoBehaviour
 {
     public GameObject asteroide1;
+    public GameObject space_debris;
 
     public float min_fall_speed = 3;
     public float max_fall_speed = 3;
@@ -47,20 +48,28 @@ public class ObstaclesSpawner : MonoBehaviour
         {
             //On choisit un lieu d'apparition de l'astéroide
             int position_number = (int)Mathf.Floor(Random.value * remaining_positions.Count); //Les positions dans la liste sont entre 0 et 5
-            //On instancie l'astéroide
-            GameObject asteroid = Instantiate(asteroide1, remaining_positions[position_number], Quaternion.identity);
-            asteroid.transform.Rotate(new Vector3(0, 0, 1), Random.value * 360f);
+            //On instancie l'obstacle (1/5 que ce soit un débris spatial indestructible)
+            GameObject obstacle;
+            if (Random.value >= 1.0f / 5.0f)
+            {
+                obstacle = Instantiate(asteroide1, remaining_positions[position_number], Quaternion.identity);
+            }
+            else
+            {
+                obstacle = Instantiate(space_debris, remaining_positions[position_number], Quaternion.identity);
+            }
+            obstacle.transform.Rotate(new Vector3(0, 0, 1), Random.value * 360f);
             //On détermine la vitesse de chute de l'astéroide
-            asteroid.GetComponent<ChuteAsteroide>().falling_speed = min_fall_speed + Random.value * (max_fall_speed-min_fall_speed);
+            obstacle.GetComponent<ChuteAsteroide>().falling_speed = min_fall_speed + Random.value * (max_fall_speed-min_fall_speed);
             //On détermine la vitesse et le sens de rotation de l'astéroide
             if (Random.value < 0.5)
-                asteroid.GetComponent<ChuteAsteroide>().rotation_speed = min_rotation_speed + Random.value * (max_rotation_speed - min_rotation_speed);
+                obstacle.GetComponent<ChuteAsteroide>().rotation_speed = min_rotation_speed + Random.value * (max_rotation_speed - min_rotation_speed);
             else
-                asteroid.GetComponent<ChuteAsteroide>().rotation_speed = -(min_rotation_speed + Random.value * (max_rotation_speed - min_rotation_speed));
+                obstacle.GetComponent<ChuteAsteroide>().rotation_speed = -(min_rotation_speed + Random.value * (max_rotation_speed - min_rotation_speed));
             //We "show" the asteroid to the agent so he can avoid it
-            gameObject.GetComponent<Agent>().asteroids.Add(asteroid);
+            gameObject.GetComponent<Agent>().obstacles.Add(obstacle);
             //On active le script de déplacement de l'astéroide (après avoir déterminé les paramètres uniquement)
-            asteroid.GetComponent<ChuteAsteroide>().enabled = true;
+            obstacle.GetComponent<ChuteAsteroide>().enabled = true;
             remaining_positions.RemoveAt(position_number);
         }
     }

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Asteroid
+  - Undestructible
   layers:
   - Default
   - TransparentFX

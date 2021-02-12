@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class InfosVaisseau : MonoBehaviour
 {
+    public AudioSource hit_audio;
+    public AudioSource explosion_audio;
+
     //Références vers les zones de texte où l'on doit afficher le score et le nombre de vies restantes
     public GameObject vies_ui;
     public GameObject score_ui;
@@ -108,11 +111,15 @@ public class InfosVaisseau : MonoBehaviour
             vies_ui.GetComponent<Text>().text = "Vies : " + Mathf.Max(0, points_de_vie);
             if (points_de_vie <= 0)
             {
+                explosion_audio.Play(0);
                 stop_score = true;
                 animator.SetBool("dead", true);
             }
             else
+            {
+                hit_audio.Play(0);
                 invincible = true;
+            }
         }
     }
 

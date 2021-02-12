@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
-    public List<GameObject> asteroids;
+    public List<GameObject> obstacles;
     public GameObject vaisseau;
     //INPUT :
 
@@ -35,7 +35,7 @@ public class Agent : MonoBehaviour
         //On doit instancier notre liste d'astéroides
         //On y ajoutera les astéroides dès qu'on les crée dans ObstaclesSpawner
         //Je ne sais pas encore si ils seront supprimés de la liste automatiquement quand ils seront détruits
-        asteroids = new List<GameObject>();
+        obstacles = new List<GameObject>();
     }
 
     //Cette méthode sera appelée automatiquement chaque frame, c'est probablement ici qu'on va faire apprendre notre agent et déterminer les outputs

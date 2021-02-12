@@ -35,5 +35,9 @@ public class ProjectileBehaviour : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
+        else if (collision.gameObject.tag == "Undestructible")
+        {
+            Destroy(gameObject);
+        }
     }
 }

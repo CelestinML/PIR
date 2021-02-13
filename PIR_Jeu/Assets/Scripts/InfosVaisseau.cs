@@ -11,6 +11,7 @@ public class InfosVaisseau : MonoBehaviour
     //Références vers les zones de texte où l'on doit afficher le score et le nombre de vies restantes
     public GameObject vies_ui;
     public GameObject score_ui;
+    public GameObject gameOver_manager;
 
     //Référence vers le gestionnaire des animations du vaisseau
     private Animator animator;
@@ -114,6 +115,7 @@ public class InfosVaisseau : MonoBehaviour
                 explosion_audio.Play(0);
                 stop_score = true;
                 animator.SetBool("dead", true);
+                gameOver_manager.GetComponent<GameOverManager>().showMenu();
             }
             else
             {

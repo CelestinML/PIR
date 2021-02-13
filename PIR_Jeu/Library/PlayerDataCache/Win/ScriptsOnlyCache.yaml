@@ -2,8 +2,11 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - Agent
+    - AudioManager
     - ChuteAsteroide
     - Deplacement
+    - GameOverManager
+    - GameOverMenu
     - InfosVaisseau
     - ObstaclesSpawner
     - ProjectileBehaviour
@@ -86,19 +89,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11828}
     - Class: 114
-      Script: {instanceID: 12162}
+      Script: {instanceID: 12096}
     - Class: 114
-      Script: {instanceID: 12306}
+      Script: {instanceID: 12164}
     - Class: 114
-      Script: {instanceID: 12604}
+      Script: {instanceID: 12308}
     - Class: 114
-      Script: {instanceID: 13088}
+      Script: {instanceID: 12606}
     - Class: 114
-      Script: {instanceID: 13450}
+      Script: {instanceID: 13016}
     - Class: 114
-      Script: {instanceID: 13782}
+      Script: {instanceID: 13090}
     - Class: 114
-      Script: {instanceID: 14396}
+      Script: {instanceID: 13364}
+    - Class: 114
+      Script: {instanceID: 13452}
+    - Class: 114
+      Script: {instanceID: 13682}
+    - Class: 114
+      Script: {instanceID: 13688}
+    - Class: 114
+      Script: {instanceID: 13786}
+    - Class: 114
+      Script: {instanceID: 14384}
+    - Class: 114
+      Script: {instanceID: 14402}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -161,23 +176,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11828}
     - Class: 114
-      Script: {instanceID: 12162}
+      Script: {instanceID: 12096}
     - Class: 114
-      Script: {instanceID: 12306}
+      Script: {instanceID: 12164}
     - Class: 114
-      Script: {instanceID: 12350}
+      Script: {instanceID: 12308}
     - Class: 114
-      Script: {instanceID: 12604}
+      Script: {instanceID: 12352}
     - Class: 114
-      Script: {instanceID: 12628}
+      Script: {instanceID: 12606}
     - Class: 114
-      Script: {instanceID: 13088}
+      Script: {instanceID: 12630}
     - Class: 114
-      Script: {instanceID: 13450}
+      Script: {instanceID: 13016}
     - Class: 114
-      Script: {instanceID: 13782}
+      Script: {instanceID: 13090}
     - Class: 114
-      Script: {instanceID: 14396}
+      Script: {instanceID: 13364}
+    - Class: 114
+      Script: {instanceID: 13452}
+    - Class: 114
+      Script: {instanceID: 13682}
+    - Class: 114
+      Script: {instanceID: 13688}
+    - Class: 114
+      Script: {instanceID: 13786}
+    - Class: 114
+      Script: {instanceID: 14384}
+    - Class: 114
+      Script: {instanceID: 14402}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -213,6 +240,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
@@ -220,25 +251,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11634}
     - Class: 114
-      Script: {instanceID: 12306}
+      Script: {instanceID: 12308}
     - Class: 114
-      Script: {instanceID: 12360}
+      Script: {instanceID: 12362}
     - Class: 114
-      Script: {instanceID: 13014}
+      Script: {instanceID: 13016}
     - Class: 114
-      Script: {instanceID: 13362}
+      Script: {instanceID: 13364}
     - Class: 114
-      Script: {instanceID: 13380}
+      Script: {instanceID: 13382}
     - Class: 114
-      Script: {instanceID: 13680}
+      Script: {instanceID: 13682}
     - Class: 114
-      Script: {instanceID: 13782}
+      Script: {instanceID: 13786}
     - Class: 114
-      Script: {instanceID: 14060}
+      Script: {instanceID: 14064}
     - Class: 114
-      Script: {instanceID: 14382}
+      Script: {instanceID: 14384}
     - Class: 114
-      Script: {instanceID: 14396}
+      Script: {instanceID: 14388}
+    - Class: 114
+      Script: {instanceID: 14402}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -444,13 +477,19 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: 650e8e9f60959309909f7cf6b3bb11e7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameOverManager
+  - hash:
+      serializedVersion: 2
       Hash: aba7b2852ef61d175dd9602e7723d5e5
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: f351d9227ef4ffb7ca26aae99b818e70
+      Hash: fd893068923e8763ec98381888b7a7d2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: InfosVaisseau
@@ -660,6 +699,12 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
+      Hash: 1545b0b8423c073fffa584b50fa71fd0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameOverMenu
+  - hash:
+      serializedVersion: 2
       Hash: f336e086360abe49a3323e5f1583c35a
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -750,6 +795,12 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
+      Hash: ba4e407ce29ce6a396a43bbeb24d00da
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AudioManager
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -795,4 +846,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/HumanPlayerScene.unity
   - Assets/Scenes/AIPlayerScene.unity
-  playerPath: C:/Users/celes/Desktop/Cours/INSA/PIR/PIR_Jeu/buildsettings/PIR_Jeu.exe
+  playerPath: D:/Cours/4IR/PIR/git/PIR/PIR_Jeu/buildsettings/PIR_Jeu.exe

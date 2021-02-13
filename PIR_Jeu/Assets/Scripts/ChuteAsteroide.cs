@@ -7,6 +7,8 @@ public class ChuteAsteroide : MonoBehaviour
     public float falling_speed = 1;
     public float rotation_speed = 1;
 
+    public GameObject piercing_bonus;
+
     private Transform transform;
     private Camera cam;
 
@@ -35,6 +37,14 @@ public class ChuteAsteroide : MonoBehaviour
         {
             collision.gameObject.GetComponent<InfosVaisseau>().ReceiveDamage(1);
             Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (Random.value < 0.1f)
+        {
+            Instantiate(piercing_bonus, transform.position, Quaternion.identity);
         }
     }
 }

@@ -6,6 +6,7 @@ public class ProjectileBehaviour : MonoBehaviour
 {
 
     public float speed = 20;
+    public bool piercing = false;
 
     private Transform transform;
 
@@ -33,7 +34,8 @@ public class ProjectileBehaviour : MonoBehaviour
         if (collision.gameObject.tag == "Asteroid")
         {
             Destroy(collision.gameObject);
-            Destroy(gameObject);
+            if (!piercing)
+                Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Undestructible")
         {

@@ -2693,7 +2693,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1126256125
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 003876eb8f84f7840a5a0609cfd3fa78, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2824,7 +2824,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audio: {fileID: 1111045148}
-  projectile: {fileID: 4419135425159801260, guid: fbeb56e9ffefe5c4a8e4aa2da77e1566,
+  current_projectile: basic
+  basic_projectile: {fileID: 4419135425159801260, guid: fbeb56e9ffefe5c4a8e4aa2da77e1566,
+    type: 3}
+  piercing_projectile: {fileID: 7043652634981831096, guid: f7db802de686bcb44a3d63dcae2c560e,
     type: 3}
   cooldown_sprite: {fileID: 250737121}
   cooldown_1: {fileID: 21300000, guid: b9ea5a73023891a41a334cb34221a5ee, type: 3}

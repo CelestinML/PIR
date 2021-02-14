@@ -7,7 +7,10 @@ public class WeaponsManager : MonoBehaviour
 {
     public AudioSource audio;
 
-    public GameObject projectile;
+    public string current_projectile = "basic";
+    public GameObject basic_projectile;
+    public GameObject piercing_projectile;
+
     public GameObject cooldown_sprite;
     public Sprite cooldown_1;
     public Sprite cooldown_2;
@@ -48,7 +51,10 @@ public class WeaponsManager : MonoBehaviour
             cooldown_sprite.GetComponent<Image>().sprite = cooldown_states[9];
             if (Input.GetButtonDown("Fire1"))
             {
-                Instantiate(projectile, gameObject.transform.position, Quaternion.identity);
+                if(current_projectile == "basic")
+                    Instantiate(basic_projectile, gameObject.transform.position, Quaternion.identity);
+                else if (current_projectile == "piercing")
+                    Instantiate(piercing_projectile, gameObject.transform.position, Quaternion.identity);
                 audio.Play(0);
                 can_shoot = false;
             }

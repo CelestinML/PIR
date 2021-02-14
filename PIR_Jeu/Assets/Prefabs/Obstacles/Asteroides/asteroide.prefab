@@ -339,3 +339,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   falling_speed: 1
   rotation_speed: 1
+  piercing_bonus: {fileID: 2111763986439048197, guid: 0bdacc263dbdc8b40b983c7f4fa661e0,
+    type: 3}

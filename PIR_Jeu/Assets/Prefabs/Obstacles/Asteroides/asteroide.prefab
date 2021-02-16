@@ -59,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 389c4920317cc6a4badd999832afeacd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -341,3 +341,4 @@ MonoBehaviour:
   rotation_speed: 1
   piercing_bonus: {fileID: 2111763986439048197, guid: 0bdacc263dbdc8b40b983c7f4fa661e0,
     type: 3}
+  fade_per_second: 2

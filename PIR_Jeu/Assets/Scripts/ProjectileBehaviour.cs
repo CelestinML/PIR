@@ -33,7 +33,7 @@ public class ProjectileBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Asteroid")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<ChuteAsteroide>().Dissolve();
             if (!piercing)
                 Destroy(gameObject);
         }

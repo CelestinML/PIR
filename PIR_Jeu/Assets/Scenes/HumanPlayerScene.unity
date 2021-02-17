@@ -992,7 +992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroide1: {fileID: 2174577356029533154, guid: 681fc8b634271bb42b362d5ca003f5fa,
     type: 3}
-  space_debris: {fileID: 7433270322230581915, guid: b81f18966cc37af4eaf476110ce3776f,
+  vaisseau: {fileID: 7433270322230581915, guid: b81f18966cc37af4eaf476110ce3776f,
     type: 3}
   min_fall_speed: 3
   max_fall_speed: 3

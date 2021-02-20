@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/HumanPlayerScene.unity
+- path: Assets/Scenes/AIPlayerScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7433270322230581911}
   - component: {fileID: 7433270322230581908}
-  - component: {fileID: 7433270322230581909}
   - component: {fileID: -2255928998562075315}
+  - component: {fileID: 1762654670953403353}
   m_Layer: 0
   m_Name: Vaisseau
   m_TagString: Undestructible
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7433270322230581915}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.23, y: 4.13, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -51,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 389c4920317cc6a4badd999832afeacd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -72,10 +72,10 @@ SpriteRenderer:
   m_SortingLayerID: 795835679
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 346fa48a09b2dfa469d2a4e2c71b69ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ff93f08e9f1e824b8e54dfe324ad066, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
@@ -83,32 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7433270322230581909
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7433270322230581915}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &-2255928998562075315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,3 +96,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   falling_speed: 1
+  fade_per_second: 2
+--- !u!68 &1762654670953403353
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7433270322230581915}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.22382648, y: 0.19190472}
+  - {x: -0.16014579, y: 0.13282678}
+  - {x: -0.1595415, y: -0.17831281}
+  - {x: -0.069537506, y: -0.17796616}
+  - {x: -0.046212923, y: -0.29211158}
+  - {x: 0.00007808115, y: -0.32929337}
+  - {x: 0.04958629, y: -0.27833498}
+  - {x: 0.06902021, y: -0.18881595}
+  - {x: 0.1653622, y: -0.18226871}
+  - {x: 0.16495167, y: 0.12890187}
+  - {x: 0.22352318, y: 0.19212969}
+  - {x: 0.20417376, y: 0.23791242}
+  - {x: 0.15488622, y: 0.2481093}
+  - {x: 0.15639573, y: 0.28922486}
+  - {x: 0.09566665, y: 0.29276454}
+  - {x: 0.087928295, y: 0.24494973}
+  - {x: -0.08045623, y: 0.24214381}
+  - {x: -0.091205776, y: 0.29426873}
+  - {x: -0.15291756, y: 0.2968206}
+  - {x: -0.14851654, y: 0.24248633}
+  - {x: -0.22242385, y: 0.19828877}

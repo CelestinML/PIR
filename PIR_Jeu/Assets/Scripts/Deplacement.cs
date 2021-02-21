@@ -5,7 +5,6 @@ using UnityEngine;
 public class Deplacement : MonoBehaviour
 {
     private CharacterController controller;
-    private Transform transform;
     private float input;
 
     private float last_input = 0;
@@ -14,7 +13,6 @@ public class Deplacement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform = gameObject.transform;
         input = 0;
     }
 

@@ -342,6 +342,8 @@ MonoBehaviour:
   rotation_speed: 1
   piercing_bonus: {fileID: 2111763986439048197, guid: 0bdacc263dbdc8b40b983c7f4fa661e0,
     type: 3}
+  shield_bonus: {fileID: 4542263872465275694, guid: ed5089ec23202de47a5b2a56894de8d3,
+    type: 3}
   fade_per_second: 2
 --- !u!95 &-3626962198837007306
 Animator:

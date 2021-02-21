@@ -12,6 +12,7 @@ public class InfosVaisseau : MonoBehaviour
     public GameObject vies_ui;
     public GameObject score_ui;
     public GameObject gameOver_manager;
+    public GameObject shield;
 
     //Référence vers le gestionnaire des animations du vaisseau
     private Animator animator;
@@ -55,6 +56,7 @@ public class InfosVaisseau : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         //On calcule et on affiche le score
         if (!stop_score)
             score += Time.fixedDeltaTime * points_per_second;
@@ -106,23 +108,27 @@ public class InfosVaisseau : MonoBehaviour
 
     public void ReceiveDamage(int damage)
     {
-        if (!invincible)
+        if (!shield.activeSelf)
         {
-            points_de_vie -= damage;
-            vies_ui.GetComponent<Text>().text = "Vies : " + Mathf.Max(0, points_de_vie);
-            if (points_de_vie <= 0)
+            if (!invincible)
             {
-                explosion_audio.Play(0);
-                stop_score = true;
-                animator.SetBool("dead", true);
-                gameOver_manager.GetComponent<GameOverManager>().showMenu();
-            }
-            else
-            {
-                hit_audio.Play(0);
-                invincible = true;
+                points_de_vie -= damage;
+                vies_ui.GetComponent<Text>().text = "Vies : " + Mathf.Max(0, points_de_vie);
+                if (points_de_vie <= 0)
+                {
+                    explosion_audio.Play(0);
+                    stop_score = true;
+                    animator.SetBool("dead", true);
+                    gameOver_manager.GetComponent<GameOverManager>().showMenu();
+                }
+                else
+                {
+                    hit_audio.Play(0);
+                    invincible = true;
+                }
             }
         }
+        
     }
 
     public void StopGame()

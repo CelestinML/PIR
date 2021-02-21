@@ -8,6 +8,7 @@ public class ChuteAsteroide : MonoBehaviour
     public float rotation_speed = 1;
 
     public GameObject piercing_bonus;
+    public GameObject shield_bonus;
 
     private Camera cam;
 
@@ -55,20 +56,31 @@ public class ChuteAsteroide : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Shield")
+        {
+            Dissolve();
+        }
+        else if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<InfosVaisseau>().ReceiveDamage(1);
             DisableColliders();
             animator.SetBool("Exploding", true);
         }
+        
     }
 
     public void SpawnBonus()
     {
-        if (Random.value < 0.1f)
+        float r = Random.value;
+        if ( r < 0.1f)
         {
             Instantiate(piercing_bonus, transform.position, Quaternion.identity);
         }
+        else if (r < 0.2f)
+        {
+            Instantiate(shield_bonus, transform.position, Quaternion.identity);
+        }
+        Instantiate(shield_bonus, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

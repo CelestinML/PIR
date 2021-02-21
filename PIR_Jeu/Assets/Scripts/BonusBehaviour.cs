@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BonusBehaviour : MonoBehaviour
 {
-    public string projectile_name = "piercing";
+    public string bonus_type;
+    public string projectile_name;
 
     public float falling_speed = 3;
 
@@ -29,7 +30,15 @@ public class BonusBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<WeaponsManager>().current_projectile = projectile_name;
+            if (bonus_type == "Projecile")
+            {
+                collision.gameObject.GetComponent<WeaponsManager>().current_projectile = projectile_name;
+            }
+            else if (bonus_type == "Shield")
+            {
+                collision.gameObject.GetComponent<ShieldManager>().Turn_On_Shield();
+            }
+            
             Destroy(gameObject);
         }
     }

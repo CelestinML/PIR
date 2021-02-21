@@ -6,12 +6,17 @@ public class DeplacementVaisseau : MonoBehaviour
 {
     public float falling_speed = 1;
     //public float rotation_speed = 1;
+    private Material material;
+    private bool dissolving = false;
+    public float fade_per_second = 2;
+    private float fade = 1;
 
     private Camera cam;
 
     // Start is called before the first frame update
     private void Start()
     {
+        material = GetComponent<Renderer>().material;
         cam = Camera.main;
     }
 
@@ -20,6 +25,11 @@ public class DeplacementVaisseau : MonoBehaviour
     {
         transform.position += new Vector3(0, -(falling_speed * Time.fixedDeltaTime), 0);
         Vector3 position_in_camera = cam.WorldToViewportPoint(transform.position);
+        if (dissolving)
+        {
+            fade -= fade_per_second * Time.fixedDeltaTime;
+            material.SetFloat("_Fade", fade);      
+        }
         if (position_in_camera.y < -0.1)
         {
             Destroy(gameObject);
@@ -32,14 +42,21 @@ public class DeplacementVaisseau : MonoBehaviour
         {
             collision.gameObject.GetComponent<InfosVaisseau>().ReceiveDamage(1);
             DisableColliders();
+            
             //Lancer une animation de destruction du vaisseau ?
         }
     }
 
+    public void Dissolve()
+    {
+        DisableColliders();
+        dissolving = true;
+    }
+
     private void DisableColliders()
     {
-        BoxCollider2D[] colliders = gameObject.GetComponents<BoxCollider2D>();
-        foreach (BoxCollider2D collider in colliders)
+        EdgeCollider2D[] colliders = gameObject.GetComponents<EdgeCollider2D>();
+        foreach (EdgeCollider2D collider in colliders)
             collider.enabled = false;
     }
 }

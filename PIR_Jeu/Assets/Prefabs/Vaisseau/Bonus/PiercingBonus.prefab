@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2111763986209040527}
   - component: {fileID: 2111763986209040520}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Piercing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2111763986439048192}
   - component: {fileID: 2111763986439048193}
   - component: {fileID: 9154595961261930388}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PiercingBonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,5 +215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025ca3d9f958eb64fa246c09028d7822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bonus_type: Projectile
   projectile_name: piercing
   falling_speed: 3

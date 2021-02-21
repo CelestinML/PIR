@@ -80,7 +80,6 @@ public class ChuteAsteroide : MonoBehaviour
         {
             Instantiate(shield_bonus, transform.position, Quaternion.identity);
         }
-        Instantiate(shield_bonus, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

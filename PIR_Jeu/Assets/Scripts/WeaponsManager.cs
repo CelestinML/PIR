@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WeaponsManager : MonoBehaviour
 {
     public AudioSource audio;
+    public GameObject piercing_image;
+    public GameObject piercing_shot_ui;
 
     public string current_projectile = "basic";
     public GameObject basic_projectile;
@@ -27,9 +30,14 @@ public class WeaponsManager : MonoBehaviour
     public float cooldown = 5;
     private bool can_shoot = true;
     private float time_since_last_shot = 0;
+    public int max_number_of_piercing = 5;
+    private int number_of_piercing_shot;
 
     private void Start()
     {
+        piercing_image.SetActive(false);
+        piercing_shot_ui.SetActive(false);
+
         cooldown_states = new List<Sprite>();
         cooldown_states.Add(cooldown_1);
         cooldown_states.Add(cooldown_2);
@@ -51,10 +59,22 @@ public class WeaponsManager : MonoBehaviour
             cooldown_sprite.GetComponent<Image>().sprite = cooldown_states[9];
             if (Input.GetButtonDown("Fire1"))
             {
-                if(current_projectile == "basic")
+                if (current_projectile == "basic")
                     Instantiate(basic_projectile, gameObject.transform.position, Quaternion.identity);
                 else if (current_projectile == "piercing")
+                {
+                    Debug.Log("Test");
+                    number_of_piercing_shot++;
+                    if (number_of_piercing_shot >= max_number_of_piercing)
+                    {
+                        piercing_image.SetActive(false);
+                        piercing_shot_ui.SetActive(false);
+                        number_of_piercing_shot = 0;
+                        current_projectile = "basic";
+                    }
+                    piercing_shot_ui.GetComponent<TextMeshProUGUI>().text = "x " + (max_number_of_piercing - number_of_piercing_shot);
                     Instantiate(piercing_projectile, gameObject.transform.position, Quaternion.identity);
+                }
                 audio.Play(0);
                 can_shoot = false;
             }
@@ -74,5 +94,15 @@ public class WeaponsManager : MonoBehaviour
                 cooldown_sprite.GetComponent<Image>().sprite = cooldown_states[i];
             }
         }
+    }
+
+    public void AllowPiercing()
+    {
+        piercing_shot_ui.GetComponent<TextMeshProUGUI>().text = "x " + max_number_of_piercing;
+        piercing_image.SetActive(true);
+        piercing_shot_ui.SetActive(true);
+        current_projectile = "piercing";
+        //Au cas où il y avait déjà un bonus de piercing
+        number_of_piercing_shot = 0;
     }
 }

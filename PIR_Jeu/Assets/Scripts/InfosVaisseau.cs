@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -56,11 +57,10 @@ public class InfosVaisseau : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
         //On calcule et on affiche le score
         if (!stop_score)
             score += Time.fixedDeltaTime * points_per_second;
-        score_ui.GetComponent<Text>().text = "Score : " + Mathf.RoundToInt(score);
+        score_ui.GetComponent<TextMeshProUGUI>().text = "Score : " + Mathf.RoundToInt(score);
         //On détermine si un boost de période de spawn doit être fait
         if (boost_moments.Contains(Mathf.FloorToInt(score)))
         {
@@ -113,7 +113,7 @@ public class InfosVaisseau : MonoBehaviour
             if (!invincible)
             {
                 points_de_vie -= damage;
-                vies_ui.GetComponent<Text>().text = "Vies : " + Mathf.Max(0, points_de_vie);
+                vies_ui.GetComponent<TextMeshProUGUI>().text = "Vies : " + Mathf.Max(0, points_de_vie);
                 if (points_de_vie <= 0)
                 {
                     explosion_audio.Play(0);

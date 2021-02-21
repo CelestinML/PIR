@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 2111763986439048199}
   - component: {fileID: 2111763986439048198}
   - component: {fileID: 2111763986439048192}
-  - component: {fileID: 2111763986439048193}
   - component: {fileID: 9154595961261930388}
   m_Layer: 10
   m_Name: PiercingBonus
@@ -182,27 +181,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!50 &2111763986439048193
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111763986439048197}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.0001
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 5
 --- !u!114 &9154595961261930388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025ca3d9f958eb64fa246c09028d7822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonus_type: Projectile
+  bonus_type: projectile
   projectile_name: piercing
-  falling_speed: 3
+  falling_speed: 5

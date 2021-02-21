@@ -8,6 +8,8 @@ public class ProjectileBehaviour : MonoBehaviour
     public float speed = 20;
     public bool piercing = false;
 
+    public GameObject vaisseau;
+
     private Transform transform;
 
     private Camera cam;

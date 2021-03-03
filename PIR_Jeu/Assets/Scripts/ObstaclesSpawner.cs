@@ -72,8 +72,6 @@ public class ObstaclesSpawner : MonoBehaviour
                 //On active le script de déplacement du vaisseau (après avoir déterminé les paramètres uniquement)
                 obstacle.GetComponent<DeplacementVaisseau>().enabled = true;
             }
-            //On "montre" l'astéroide à l'agent pour qu'il puisse le voir
-            gameObject.GetComponent<Agent>().obstacles.Add(obstacle);
             
             remaining_positions.RemoveAt(position_number);
         }

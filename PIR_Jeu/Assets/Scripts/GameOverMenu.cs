@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class GameOverMenu : MonoBehaviour
 {
-    public string levelToStart;
     public void RestartGame()
     {
-        SceneManager.LoadScene(levelToStart);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void GoToMenu()
     {

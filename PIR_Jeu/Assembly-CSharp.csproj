@@ -64,11 +64,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Agent.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\BonusBehaviour.cs" />
     <Compile Include="Assets\Scripts\ChuteAsteroide.cs" />
-    <Compile Include="Assets\Scripts\Deplacement.cs" />
+    <Compile Include="Assets\Scripts\Deplacement\Deplacement.cs" />
+    <Compile Include="Assets\Scripts\Deplacement\DeplacementDiscret.cs" />
     <Compile Include="Assets\Scripts\DeplacementVaisseau.cs" />
     <Compile Include="Assets\Scripts\GameOverManager.cs" />
     <Compile Include="Assets\Scripts\GameOverMenu.cs" />

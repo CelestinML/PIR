@@ -31,24 +31,26 @@ public class InfosVaisseau : MonoBehaviour
 
     //Infos pour le calcul du score
     private float points_per_second = 10;
-    private float score = 0;
+    public float score = 0;
     private bool stop_score = false;
 
     //Infos pour booster la difficulté en fonction du score
     private bool period_boost_block = false;
-    private List<int> boost_moments;
+    private List<int> period_boost_moments;
     private bool max_speed_boost_block = false;
     private List<int> max_speed_boost_moments;
+
+    public DodgeObstaclesAgent agent;
 
     private void Start()
     {
         animator = gameObject.GetComponent<Animator>();
-        boost_moments = new List<int>();
-        boost_moments.Add(200);
-        boost_moments.Add(400);
-        boost_moments.Add(800);
-        boost_moments.Add(2000);
-        boost_moments.Add(6000);
+        period_boost_moments = new List<int>();
+        period_boost_moments.Add(200);
+        period_boost_moments.Add(400);
+        period_boost_moments.Add(800);
+        period_boost_moments.Add(2000);
+        period_boost_moments.Add(6000);
         max_speed_boost_moments = new List<int>();
         max_speed_boost_moments.Add(1500);
         max_speed_boost_moments.Add(3000);
@@ -62,10 +64,11 @@ public class InfosVaisseau : MonoBehaviour
             score += Time.fixedDeltaTime * points_per_second;
         score_ui.GetComponent<TextMeshProUGUI>().text = "Score : " + Mathf.RoundToInt(score);
         //On détermine si un boost de période de spawn doit être fait
-        if (boost_moments.Contains(Mathf.FloorToInt(score)))
+        if (period_boost_moments.Contains(Mathf.FloorToInt(score)))
         {
             if (!period_boost_block)
             {
+                agent.AddReward(0.5f);
                 Camera.main.GetComponent<ObstaclesSpawner>().spawn_period *= 0.8f;
                 period_boost_block = true;
             }
@@ -77,6 +80,7 @@ public class InfosVaisseau : MonoBehaviour
         {
             if (!max_speed_boost_block)
             {
+                agent.AddReward(1f);
                 Camera.main.GetComponent<ObstaclesSpawner>().max_fall_speed *= 1.5f;
                 max_speed_boost_block = true;
             }
@@ -114,15 +118,28 @@ public class InfosVaisseau : MonoBehaviour
             {
                 points_de_vie -= damage;
                 vies_ui.GetComponent<TextMeshProUGUI>().text = "Vies : " + Mathf.Max(0, points_de_vie);
+
                 if (points_de_vie <= 0)
                 {
-                    explosion_audio.Play(0);
-                    stop_score = true;
-                    animator.SetBool("dead", true);
-                    gameOver_manager.GetComponent<GameOverManager>().showMenu();
+                    if (agent != null)
+                    {
+                        agent.AddReward(-5f);
+                        agent.EndEpisode();
+                    }
+                    else
+                    {
+                        explosion_audio.Play(0);
+                        stop_score = true;
+                        animator.SetBool("dead", true);
+                        gameOver_manager.GetComponent<GameOverManager>().showMenu();
+                    }
                 }
                 else
                 {
+                    if (agent != null)
+                    {
+                        agent.AddReward(-1f);
+                    }
                     hit_audio.Play(0);
                     invincible = true;
                 }
@@ -133,6 +150,7 @@ public class InfosVaisseau : MonoBehaviour
 
     public void StopGame()
     {
+        
         //Afficher l'UI de fin de partie
         Camera.main.GetComponent<ObstaclesSpawner>().enabled = false;
         gameObject.SetActive(false);

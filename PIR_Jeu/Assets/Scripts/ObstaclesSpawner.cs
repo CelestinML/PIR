@@ -73,6 +73,7 @@ public class ObstaclesSpawner : MonoBehaviour
                 obstacle.GetComponent<DeplacementVaisseau>().enabled = true;
             }
             
+            
             remaining_positions.RemoveAt(position_number);
         }
     }

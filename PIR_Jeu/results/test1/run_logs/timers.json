@@ -1,0 +1,78 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1614445214",
+        "python_version": "3.7.9 (tags/v3.7.9:13c94747c7, Aug 17 2020, 18:58:18) [MSC v.1900 64 bit (AMD64)]",
+        "command_line_arguments": "D:\\Cours\\4IR\\PIR\\git\\PIR\\PIR_Jeu\\venv\\Scripts\\mlagents-learn --run-id=test1 --resume",
+        "mlagents_version": "0.24.0",
+        "mlagents_envs_version": "0.24.0",
+        "communication_protocol_version": "1.4.0",
+        "pytorch_version": "1.7.0+cu110",
+        "numpy_version": "1.20.1",
+        "end_time_seconds": "1614445226"
+    },
+    "total": 12.4727078,
+    "count": 1,
+    "self": 0.0069235000000009705,
+    "children": {
+        "run_training.setup": {
+            "total": 0.08801959999999998,
+            "count": 1,
+            "self": 0.08801959999999998
+        },
+        "TrainerController.start_learning": {
+            "total": 12.3777647,
+            "count": 1,
+            "self": 0.013949800000000678,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 11.867999900000001,
+                    "count": 1,
+                    "self": 11.867999900000001
+                },
+                "trainer_threads": {
+                    "total": 1.2699999999199463e-05,
+                    "count": 1,
+                    "self": 1.2699999999199463e-05,
+                    "children": {
+                        "thread_root": {
+                            "total": 0.0,
+                            "count": 0,
+                            "is_parallel": true,
+                            "self": 0.0,
+                            "children": {
+                                "trainer_advance": {
+                                    "total": 0.013789600000000846,
+                                    "count": 1,
+                                    "is_parallel": true,
+                                    "self": 8.020000000108496e-05,
+                                    "children": {
+                                        "process_trajectory": {
+                                            "total": 0.01370939999999976,
+                                            "count": 1,
+                                            "is_parallel": true,
+                                            "self": 0.01370939999999976
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "TrainerController._save_models": {
+                    "total": 0.49580229999999936,
+                    "count": 1,
+                    "self": 0.008327499999998267,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.4874748000000011,
+                            "count": 1,
+                            "self": 0.4874748000000011
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

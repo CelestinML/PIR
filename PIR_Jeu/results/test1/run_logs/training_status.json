@@ -1,0 +1,41 @@
+{
+    "DodgeObstacles": {
+        "checkpoints": [
+            {
+                "steps": 499960,
+                "file_path": "results\\test1\\DodgeObstacles\\DodgeObstacles-499960.onnx",
+                "reward": -6.511627906976744,
+                "creation_time": 1614445078.334836
+            },
+            {
+                "steps": 500024,
+                "file_path": "results\\test1\\DodgeObstacles\\DodgeObstacles-500024.onnx",
+                "reward": -6.511627906976744,
+                "creation_time": 1614445078.5851762
+            },
+            {
+                "steps": 500024,
+                "file_path": "results\\test1\\DodgeObstacles\\DodgeObstacles-500024.onnx",
+                "reward": null,
+                "creation_time": 1614445136.8340597
+            },
+            {
+                "steps": 500024,
+                "file_path": "results\\test1\\DodgeObstacles\\DodgeObstacles-500024.onnx",
+                "reward": null,
+                "creation_time": 1614445226.8303597
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500024,
+            "file_path": "results\\test1\\DodgeObstacles.onnx",
+            "reward": null,
+            "creation_time": 1614445226.8303597
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.24.0",
+        "torch_version": "1.7.0+cu110"
+    }
+}

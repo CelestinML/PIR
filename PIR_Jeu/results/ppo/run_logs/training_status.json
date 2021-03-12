@@ -1,0 +1,23 @@
+{
+    "DodgeObstacles": {
+        "checkpoints": [
+            {
+                "steps": 64,
+                "file_path": "results\\ppo\\DodgeObstacles\\DodgeObstacles-64.onnx",
+                "reward": null,
+                "creation_time": 1614436739.521128
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 64,
+            "file_path": "results\\ppo\\DodgeObstacles.onnx",
+            "reward": null,
+            "creation_time": 1614436739.521128
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.24.0",
+        "torch_version": "1.7.0+cu110"
+    }
+}

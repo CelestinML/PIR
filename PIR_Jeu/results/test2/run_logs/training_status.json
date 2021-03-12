@@ -1,0 +1,29 @@
+{
+    "DodgeObstacles": {
+        "checkpoints": [
+            {
+                "steps": 499958,
+                "file_path": "results\\test2\\DodgeObstacles\\DodgeObstacles-499958.onnx",
+                "reward": -6.631578947368421,
+                "creation_time": 1614507658.3450172
+            },
+            {
+                "steps": 500022,
+                "file_path": "results\\test2\\DodgeObstacles\\DodgeObstacles-500022.onnx",
+                "reward": -6.631578947368421,
+                "creation_time": 1614507658.407851
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500022,
+            "file_path": "results\\test2\\DodgeObstacles.onnx",
+            "reward": -6.631578947368421,
+            "creation_time": 1614507658.407851
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.24.0",
+        "torch_version": "1.7.0+cu110"
+    }
+}

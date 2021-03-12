@@ -28,7 +28,7 @@ public class Deplacement : MonoBehaviour
         //transform.position += new Vector3(1, 0, 0) * Time.fixedDeltaTime * speed * input;
         if (input > 0)
             MoveRight();
-        else if (input < -0)
+        else if (input < 0)
             MoveLeft();
         else
             DoNotMove();

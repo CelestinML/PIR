@@ -19,6 +19,7 @@ public class ChuteAsteroide : MonoBehaviour
 
     private Animator animator;
 
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -62,9 +63,11 @@ public class ChuteAsteroide : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Player")
         {
+            
             collision.gameObject.GetComponent<InfosVaisseau>().ReceiveDamage(1);
             DisableColliders();
             animator.SetBool("Exploding", true);
+
         }
         
     }

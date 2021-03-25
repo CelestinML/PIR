@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AIFromScratch\Dylan.cs" />
+    <Compile Include="Assets\Scripts\AStar\Billie.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\BonusBehaviour.cs" />
     <Compile Include="Assets\Scripts\ChuteAsteroide.cs" />

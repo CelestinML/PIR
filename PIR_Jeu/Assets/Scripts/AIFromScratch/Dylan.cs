@@ -1,22 +1,27 @@
 ﻿using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Dylan : MonoBehaviour
 {
     public Deplacement deplacement;
-    private float period_deplacement = 0.2f;
-    private float period_acquisition = 0.5f;
-    private float compteur_deplacement = 0f;
-    private float compteur_acquisition = 0f;
+    private float period = 1f;
+    private float compteur = 0f;
     private int direction = 0;
-    private float reward = 0f;
 
     //Réseau de neuronnes
+    int[] shape = { 7, 3 };
     List<float> neural_input = new List<float>();
     List<float> neural_output = new List<float>();
     List<float> biases = new List<float>();
-    List<float> weights = new List<float>();
+    List<float[]> weights = new List<float[]>();
+    private float reward = 0f;
+    private float loss = 0f;
+    private float discountFactor = 0.8f;
+    private float learningRate = 0.5f;
+    private float explorationRate = 1f;
+    private float lastQ = 0f;
 
 
     // Start is called before the first frame update
@@ -29,31 +34,40 @@ public class Dylan : MonoBehaviour
 
     private void Init_neurons()
     {
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < shape[0]; i++)
         {
             neural_input.Add(0f);
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < shape[1]; i++)
         {
-            neural_output.Add(Random.Range(0f, 1f));
+            neural_output.Add(0f);
         }
     }
 
     private void Init_biases()
     {
-        for (int i = 0; i < 7; i++)
+        List<float> biasesList = new List<float>();
+        for(int i = 0; i < shape[1]; i++)
         {
-            biases.Add(Random.Range(-0.5f, 0.5f));
+            biasesList.Add(Random.Range(-0.5f, 0.5f));
         }
+        biases = biasesList;
     }
 
     private void Init_weights()
-    {
-        for (int i = 0; i < 7; i++)
+    { 
+        List<float[]> weightsList = new List<float[]>();
+        for (int i = 0; i < shape[1]; i++)
         {
-            biases.Add(Random.Range(0f, 1f));
+            float[] weight = new float[shape[0]];
+            for (int j = 0; j < shape[0]; j++)
+            {
+                weight[j] = Random.Range(0f, 1f);
+            }
+            weightsList.Add(weight);
         }
+        weights = weightsList;
     }
 
     private float Activate(float x)
@@ -61,13 +75,32 @@ public class Dylan : MonoBehaviour
         return ((Mathf.Exp(x)) / (Mathf.Exp(x) + 1));
     }
 
-    /*private float Feed_forward()
+    private void Feed_forward()
     {
-        foreach (float neuron in neural_input)
+        for (int i = 0; i < shape[1]; i++)
         {
-
+            float somme = 0;
+            for (int j = 0; j < shape[0]; j++) {
+                somme += neural_input[j] * weights[i][j];
+            }
+            neural_output[i] = Activate(somme + biases[i]);
         }
-    }*/
+/*        Debug.Log("output 0 : " + neural_output[0]);
+        Debug.Log("output 1 : " + neural_output[1]);
+        Debug.Log("output 2 : " + neural_output[2]);*/
+    }
+
+
+    private void Backpropagate()
+    {
+        // TODO
+    }
+
+    // Retourne le neurone de sortie qui a la plus grande valeur
+    private int Get_move()
+    {
+        return neural_output.IndexOf(neural_output.Max());
+    }
 
 
     public void Update_reward(float r)
@@ -75,25 +108,30 @@ public class Dylan : MonoBehaviour
         reward += r;
     }
 
+
+    private void Compute_loss(int index)
+    {
+        loss = Mathf.Pow((reward + discountFactor*neural_output[index] - lastQ), 2);
+        lastQ = neural_output[index];
+        Debug.Log("loss is : " + loss);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        compteur += Time.fixedDeltaTime;
 
-        compteur_deplacement += Time.fixedDeltaTime;
-        compteur_acquisition += Time.fixedDeltaTime;
-        if (compteur_deplacement > period_deplacement)
+        if (compteur > period)
         {
-            
-            Update_reward(1f);
-            compteur_deplacement = 0f;
-            direction = Random.Range(0, 3);
-            Debug.Log("Le reward total est de : " + reward);
-        }
+            compteur = 0f;
 
-        if (compteur_acquisition > period_acquisition) {
-            compteur_acquisition = 0f;
+            Update_reward(5f);
             Update_input();
-        } 
+            Feed_forward();
+            direction = Get_move();
+            Compute_loss(direction);
+            reward = 0;
+        }
 
         if (direction == 0)
         {
@@ -138,11 +176,9 @@ public class Dylan : MonoBehaviour
 
         for(int i = 0; i < tmp_pos.Count; i++) //Boucle supprimant les astéroïdes dépassant le vaisseau
         {
-            Debug.Log("La position de cet asteroïde est de : {" + position_obstacles[i][0] + "; " +  position_obstacles[i][1] + "}");
             if (position_obstacles[i][1] < -5f || position_obstacles[i][1] > 0.5f)
             {
                 position_obstacles.RemoveAt(i);
-                Debug.Log("Element supprimé, la taille du tableau est de : " + position_obstacles.Count);  
             }
         }
 
@@ -188,10 +224,6 @@ public class Dylan : MonoBehaviour
                     Debug.Log("Default Case");
                     break;
             }
-        }
-        for(int i = 0; i < inputs.Length; i++)
-        {
-            Debug.Log("Input[" + i + "] = " + inputs[i]);
         }
     }
 }

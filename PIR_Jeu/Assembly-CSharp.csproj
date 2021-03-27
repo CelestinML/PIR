@@ -77,6 +77,12 @@
     <Compile Include="Assets\Scripts\InfosVaisseau.cs" />
     <Compile Include="Assets\Scripts\ObstaclesSpawner.cs" />
     <Compile Include="Assets\Scripts\ProjectileBehaviour.cs" />
+    <Compile Include="Assets\Scripts\ReinforcementFromScratch\TrainingChuteAsteroide.cs" />
+    <Compile Include="Assets\Scripts\ReinforcementFromScratch\TrainingData.cs" />
+    <Compile Include="Assets\Scripts\ReinforcementFromScratch\TrainingDeplacementVaisseau.cs" />
+    <Compile Include="Assets\Scripts\ReinforcementFromScratch\TrainingInfosVaisseau.cs" />
+    <Compile Include="Assets\Scripts\ReinforcementFromScratch\TrainingMemory.cs" />
+    <Compile Include="Assets\Scripts\ReinforcementFromScratch\TrainingObstaclesSpawner.cs" />
     <Compile Include="Assets\Scripts\ShieldBehaviour.cs" />
     <Compile Include="Assets\Scripts\ShieldManager.cs" />
     <Compile Include="Assets\Scripts\WeaponsManager.cs" />
@@ -84,6 +90,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Dataset\Dataset.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />

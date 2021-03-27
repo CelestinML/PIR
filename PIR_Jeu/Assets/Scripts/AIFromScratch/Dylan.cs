@@ -2,6 +2,9 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System.Threading.Tasks;
+using System;
 
 public class Dylan : MonoBehaviour
 {
@@ -21,7 +24,7 @@ public class Dylan : MonoBehaviour
     private float discountFactor = 0.8f;
     private float learningRate = 0.5f;
     private float explorationRate = 1f;
-    private float lastQ = 0f;
+    private float qValue = 0f;
 
 
     // Start is called before the first frame update
@@ -50,7 +53,7 @@ public class Dylan : MonoBehaviour
         List<float> biasesList = new List<float>();
         for(int i = 0; i < shape[1]; i++)
         {
-            biasesList.Add(Random.Range(-0.5f, 0.5f));
+            biasesList.Add(UnityEngine.Random.Range(-0.5f, 0.5f));
         }
         biases = biasesList;
     }
@@ -63,7 +66,7 @@ public class Dylan : MonoBehaviour
             float[] weight = new float[shape[0]];
             for (int j = 0; j < shape[0]; j++)
             {
-                weight[j] = Random.Range(0f, 1f);
+                weight[j] = UnityEngine.Random.Range(0f, 1f);
             }
             weightsList.Add(weight);
         }
@@ -107,13 +110,41 @@ public class Dylan : MonoBehaviour
     {
         reward += r;
     }
-
-
-    private void Compute_loss(int index)
+  
+    public void Store_State()
     {
-        loss = Mathf.Pow((reward + discountFactor*neural_output[index] - lastQ), 2);
-        lastQ = neural_output[index];
-        Debug.Log("loss is : " + loss);
+        Debug.Log("Entrée dans Store_State() \n");
+        TrainingData currentState = new TrainingData(neural_input.ToArray(), direction, reward);
+        String line = currentState.ToString();
+        string path = @"C:\\Users\\xSyl0\\OneDrive\\Bureau\\PIR\\PIR\\PIR_Jeu\\Assets\\Dataset\\Dataset.txt";
+        // This text is added only once to the file.
+        if (!File.Exists(path))
+        {
+            // Create a file to write to.
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                Debug.Log("No file found");
+                sw.WriteLine("Début du fichier");
+            }
+        }
+
+        // This text is always added, making the file longer over time
+        // if it is not deleted.
+        using (StreamWriter sw = File.AppendText(path))
+        {
+            sw.WriteLine(line);
+        }
+
+        // Open the file to read from.
+        using (StreamReader sr = File.OpenText(path))
+        {
+            string s = "";
+            while ((s = sr.ReadLine()) != null)
+            {
+                Console.WriteLine(s);
+            }
+        }
+
     }
 
     // Update is called once per frame
@@ -128,9 +159,9 @@ public class Dylan : MonoBehaviour
             Update_reward(5f);
             Update_input();
             Feed_forward();
-            direction = Get_move();
-            Compute_loss(direction);
-            reward = 0;
+            //direction = Get_move();
+            direction = UnityEngine.Random.Range(0, 3);
+            Store_State();
         }
 
         if (direction == 0)
@@ -225,6 +256,8 @@ public class Dylan : MonoBehaviour
                     break;
             }
         }
+
+        neural_input = inputs.ToList();
     }
 }
 

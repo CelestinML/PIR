@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 5049341077017192488}
   - component: {fileID: 6438869866395890299}
   - component: {fileID: 2830692930179973666}
-  - component: {fileID: 7561994476364612951}
+  - component: {fileID: 760167614612251492}
   m_Layer: 0
   m_Name: TrainingAsteroide
   m_TagString: Asteroid
@@ -345,7 +345,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7561994476364612951
+--- !u!114 &760167614612251492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8417073450570823158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6576097748e77214492050a9585c2702, type: 3}
+  m_Script: {fileID: 11500000, guid: 6190697af4bef414084cd30fe1fd143c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   falling_speed: 1

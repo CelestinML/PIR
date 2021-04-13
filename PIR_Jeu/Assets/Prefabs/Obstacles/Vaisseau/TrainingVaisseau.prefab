@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5625816072747074715}
   - component: {fileID: 5625816072747074712}
   - component: {fileID: 3552384653142281685}
-  - component: {fileID: 4892114094554998274}
+  - component: {fileID: 4634594021500329912}
   m_Layer: 0
   m_Name: TrainingVaisseau
   m_TagString: Undestructible
@@ -120,7 +120,7 @@ EdgeCollider2D:
   - {x: -0.15291756, y: 0.2968206}
   - {x: -0.14851654, y: 0.24248633}
   - {x: -0.22242385, y: 0.19828877}
---- !u!114 &4892114094554998274
+--- !u!114 &4634594021500329912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5625816072747074711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2006a1d6d6ec6834b99716e9660176b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6097cbe9ee1cf8940a9c21a9be0877ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   falling_speed: 1

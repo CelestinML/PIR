@@ -115,8 +115,6 @@ public class InfosVaisseau : MonoBehaviour
             if (!invincible)
             {
                 points_de_vie -= damage;
-                if (dylan != null)
-                    dylan.Update_reward(-100f);
                 vies_ui.GetComponent<TextMeshProUGUI>().text = "Vies : " + Mathf.Max(0, points_de_vie);
                 if (points_de_vie <= 0)
                 {

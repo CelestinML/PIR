@@ -72,6 +72,13 @@
     <Compile Include="Assets\Scripts\Deplacement\Deplacement.cs" />
     <Compile Include="Assets\Scripts\Deplacement\DeplacementDiscret.cs" />
     <Compile Include="Assets\Scripts\DeplacementVaisseau.cs" />
+    <Compile Include="Assets\Scripts\Evolutionnary\ChuteAsteroideTraining.cs" />
+    <Compile Include="Assets\Scripts\Evolutionnary\DeplacementVaisseauTraining.cs" />
+    <Compile Include="Assets\Scripts\Evolutionnary\InfosVaisseauTraining.cs" />
+    <Compile Include="Assets\Scripts\Evolutionnary\Kevin.cs" />
+    <Compile Include="Assets\Scripts\Evolutionnary\MoveWithAI.cs" />
+    <Compile Include="Assets\Scripts\Evolutionnary\ObstaclesSpawnerTraining.cs" />
+    <Compile Include="Assets\Scripts\Evolutionnary\UpdateGeneration.cs" />
     <Compile Include="Assets\Scripts\GameOverManager.cs" />
     <Compile Include="Assets\Scripts\GameOverMenu.cs" />
     <Compile Include="Assets\Scripts\InfosVaisseau.cs" />
@@ -107,6 +114,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\Dataset\Score.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <Reference Include="UnityEngine">

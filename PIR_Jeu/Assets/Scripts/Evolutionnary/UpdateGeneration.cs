@@ -37,32 +37,47 @@ public class UpdateGeneration
     private void SelectGeneration()
     {
         Kevin[] tmp_Children = new Kevin[nbChildren];
+        int cpt = 0;
 
         for (int i = 0; i < nbBest; i++)
         {
             for(int j = 0; j < nbChildrenPerBest; j++)
             {
-                Kevin tmp = new Kevin(bests[i].Shape[0], bests[i].Shape[1], bests[i].Shape[bests[i].Shape.Length - 1], bests[i].Weights, bests[i].Biases);
-                tmp_Children[(i * nbBest) + j] = tmp;
+                // Kevin tmp = new Kevin();     
+                Kevin tmp = new Kevin(Copy(bests[i].Weights), bests[i].Biases);
+                tmp.Mutate();
+                children[cpt] = tmp;
+                cpt++;
             }
         }
 
         for (int i = 0; i < nbRandom; i++)
         {
-            tmp_Children[nbBest * nbChildrenPerBest + i] = new Kevin(7, 8, 3);
-        }
-
-        for (int i = 0; i < tmp_Children.Length; i++)
-        {
-            tmp_Children[i].Mutate();
-            Debug.Log(tmp_Children[i]);
-            children[i] = tmp_Children[i];
+            children[cpt] = new Kevin(7, 8, 3);
         }
 
         for (int i = 0; i < tmp_Children.Length; i++)
         {
             Debug.Log("Children[" + i + "] = " + children[i]);
         }
+    }
+
+    private static float[][][] Copy(float[][][] source)
+    {
+        float[][][] dest = new float[source.Length][][];
+        for (int x = 0; x < source.Length; x++)
+        {
+            float[][] s = new float[source[x].Length][];
+            for (int y = 0; y < source[x].Length; y++)
+            {
+                float[] n = new float[source[x][y].Length];
+                int length = source[x][y].Length * sizeof(int);
+                Buffer.BlockCopy(source[x][y], 0, n, 0, length);
+                s[y] = n;
+            }
+            dest[x] = s;
+        }
+        return dest;
     }
 
 
@@ -117,7 +132,8 @@ public class UpdateGeneration
 
         String str = "";
 
-        string path = @"C:\\Users\\xSyl0\\OneDrive\\Bureau\\PIR\\PIR\\PIR_Jeu\\Assets\\Dataset\\Score.txt";
+        string path = Directory.GetCurrentDirectory() + "Score.txt";
+        Debug.Log(path);
 
         for(int i = 0; i < nbChildren; i++)
         { 
@@ -170,7 +186,9 @@ public class UpdateGeneration
 
         str += "NEXT \n";
         
-        string path = @"C:\\Users\\xSyl0\\OneDrive\\Bureau\\PIR\\PIR\\PIR_Jeu\\Assets\\Dataset\\Dataset.txt";
+        string path = Directory.GetCurrentDirectory() + "Dataset.txt";
+        Debug.Log(path);
+
         // This text is added only once to the file.
         if (!File.Exists(path))
         {

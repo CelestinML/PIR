@@ -172,7 +172,7 @@ public class InfosVaisseauTraining : MonoBehaviour
         childCompteur = generationUpdator.GetChildScoreAndUpdateKevin(childCompteur, score);
 
         score = 0;
-        points_de_vie = 1;
+        points_de_vie = 3;
         invincible = false;
     }
 }

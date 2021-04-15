@@ -6,31 +6,47 @@ using UnityEngine;
 
 public class UpdateGeneration
 {
+    private bool loadFromFile = false;
 
-    private int nbChildren = 10;
-    private int nbBest = 3;
-    private int nbChildrenPerBest = 3;
-    private int nbRandom = 1;
+    private int nbChildren = 35;
+    private int nbBest = 6;
+    private int nbChildrenPerBest = 5;
+    private int nbRandom = 5;
 
     public MoveWithAI moveHandler;
 
-    private Kevin[] children = new Kevin[10];
-    private float[] scores = new float[10];
+    private Kevin[] children;
+    private float[] scores;
 
-    private Kevin[] bests = new Kevin[3];
+    private Kevin[] bests;
 
+
+    public UpdateGeneration()
+    {
+        children = new Kevin[nbChildren];
+        scores = new float[nbChildren];
+
+        bests = new Kevin[nbBest];
+    }
 
 
     public void CreateGeneration()
     {
-        children = new Kevin[nbChildren];
-
-        for(int i = 0; i < nbChildren; i++)
+        if(loadFromFile)
         {
-            children[i] = new Kevin(7, 8, 3);
-            Debug.Log("Kevin n" + i + " has been created");
+            GetBestsFromFile();
+            SelectGeneration();
         }
+        else
+        {
+            children = new Kevin[nbChildren];
 
+            for (int i = 0; i < nbChildren; i++)
+            {
+                children[i] = new Kevin(7, 8, 3);
+                Debug.Log("Kevin n" + i + " has been created");
+            }
+        }
     }
 
 
@@ -181,10 +197,8 @@ public class UpdateGeneration
         for(int i = 0; i < bests.Length; i++)
         {
             str += bests[i].ToString();
-            str += "\n\n\n";
+            str += "\n";
         }
-
-        str += "NEXT \n";
         
         string path = Directory.GetCurrentDirectory() + "Dataset.txt";
         Debug.Log(path);
@@ -202,7 +216,7 @@ public class UpdateGeneration
 
         // This text is always added, making the file longer over time
         // if it is not deleted.
-        using (StreamWriter sw = new StreamWriter(path, true))
+        using (StreamWriter sw = new StreamWriter(path, false))
         {
             sw.WriteLine(str);
         }
@@ -216,5 +230,82 @@ public class UpdateGeneration
                 Console.WriteLine(s);
             }
         }
+    }
+
+
+    private void GetBestsFromFile()
+    {
+        string path = Directory.GetCurrentDirectory() + "Dataset.txt";
+        string text = System.IO.File.ReadAllText(path);
+
+        // Example #2
+        // Read each line of the file into a string array. Each element
+        // of the array is one line of the file.
+        string[] lines = System.IO.File.ReadAllLines(path);
+
+        Debug.Log("First Weights from file : " + lines[0]);
+        Debug.Log("First Biases from file : " + lines[1]);
+
+
+        string[][] weightsString = new string[nbBest][];
+        string[][] biasesString = new string[nbBest][];
+
+        float[][] flatBestWeights = new float[nbBest][];
+        float[][] flatBestBiases = new float[nbBest][];
+
+        for (int i = 0; i < lines.Length - 1; i += 2)
+        {
+            // Weights
+            string[] tmpWeights = lines[i].Split(' ');
+
+            List<string> weightsList = new List<string>();
+            for (int j = 0; j < tmpWeights.Length - 1; j++)
+            {
+                weightsList.Add(tmpWeights[j]);
+            }
+            weightsString[i / 2] = weightsList.ToArray();
+
+
+            // Weights
+            string[] tmpBiases = lines[i / 2 + 1].Split(' ');
+
+            List<string> biasesList = new List<string>();
+            for (int j = 0; j < tmpBiases.Length - 1; j++)
+            {
+                biasesList.Add(tmpBiases[j]);
+            }
+            biasesString[i / 2] = biasesList.ToArray();
+        }
+
+
+        for (int i = 0; i < weightsString.Length; i++)
+        {
+            List<float> flatWeights = new List<float>();
+            for (int j = 0; j < weightsString[i].Length; j++)
+            {
+                flatWeights.Add(float.Parse(weightsString[i][j]));
+            }
+            flatBestWeights[i] = flatWeights.ToArray();
+        }
+
+        for (int i = 0; i < biasesString.Length; i++)
+        {
+            List<float> flatBiases = new List<float>();
+            for (int j = 0; j < biasesString[i].Length; j++)
+            {
+                flatBiases.Add(float.Parse(biasesString[i][j]));
+            }
+            flatBestBiases[i] = flatBiases.ToArray();
+        }
+
+        Debug.Log("First Weights floated : " + flatBestWeights[0][0] + ", " + flatBestWeights[0][1] + ", " + flatBestWeights[0][2] + ", " + flatBestWeights[0][3]);
+        Debug.Log("First Biases floated : " + flatBestBiases[0][0] + ", " + flatBestBiases[0][1] + ", " + flatBestBiases[0][2] + ", " + flatBestBiases[0][3]);
+
+        for (int i = 0; i < nbBest; i++)
+        {
+            bests[i] = new Kevin(7, 8, 3, flatBestWeights[i], flatBestBiases[i]);
+        }
+
+        Debug.Log("Best Kevin : " + bests[0]);
     }
 }

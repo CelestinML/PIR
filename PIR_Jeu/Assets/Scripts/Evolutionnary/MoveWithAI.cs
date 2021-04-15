@@ -6,7 +6,7 @@ using System.Linq;
 public class MoveWithAI : MonoBehaviour
 {
     public Deplacement deplacement;
-    private float period = 0.25f;
+    private float period = 0.1f;
     private float compteur = 0f;
     private int direction = 0;
 

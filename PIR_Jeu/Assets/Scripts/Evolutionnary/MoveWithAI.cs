@@ -29,6 +29,10 @@ public class MoveWithAI : MonoBehaviour
         kevin = pKevin;
     }
 
+    public Kevin GetAI()
+    {
+        return kevin;
+    }
 
     // Update is called once per frame
     void FixedUpdate()

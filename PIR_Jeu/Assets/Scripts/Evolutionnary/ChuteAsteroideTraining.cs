@@ -60,8 +60,6 @@ public class ChuteAsteroideTraining : MonoBehaviour
         else if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<InfosVaisseauTraining>().ReceiveDamage(1);
-            DisableColliders();
-            animator.SetBool("Exploding", true);
         }
         
     }

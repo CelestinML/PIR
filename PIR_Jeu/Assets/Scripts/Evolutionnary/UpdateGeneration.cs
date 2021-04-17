@@ -8,12 +8,13 @@ public class UpdateGeneration
 {
     private bool loadFromFile = false;
 
-    private int nbChildren = 35;
-    private int nbBest = 6;
-    private int nbChildrenPerBest = 5;
-    private int nbRandom = 5;
+    private int nbChildren = 100;
+    private int nbBest = 10;
+    private int nbChildrenPerBest = 9;
+    private int nbRandom = 10;
 
     public MoveWithAI moveHandler;
+    public ShipSpawnerTraining shipSpawner;
 
     private Kevin[] children;
     private float[] scores;
@@ -30,12 +31,14 @@ public class UpdateGeneration
     }
 
 
-    public void CreateGeneration()
+    public Kevin[] CreateGeneration()
     {
         if(loadFromFile)
         {
+            // TODO
             GetBestsFromFile();
             SelectGeneration();
+            return children;
         }
         else
         {
@@ -44,15 +47,15 @@ public class UpdateGeneration
             for (int i = 0; i < nbChildren; i++)
             {
                 children[i] = new Kevin(7, 8, 3);
-                Debug.Log("Kevin n" + i + " has been created");
             }
+
+            return children;
         }
     }
 
 
-    private void SelectGeneration()
+    private Kevin[] SelectGeneration()
     {
-        Kevin[] tmp_Children = new Kevin[nbChildren];
         int cpt = 0;
 
         for (int i = 0; i < nbBest; i++)
@@ -60,7 +63,7 @@ public class UpdateGeneration
             for(int j = 0; j < nbChildrenPerBest; j++)
             {
                 // Kevin tmp = new Kevin();     
-                Kevin tmp = new Kevin(Copy(bests[i].Weights), bests[i].Biases);
+                Kevin tmp = new Kevin(Copy(bests[i].Weights), Copy(bests[i].Biases));
                 tmp.Mutate();
                 children[cpt] = tmp;
                 cpt++;
@@ -70,59 +73,25 @@ public class UpdateGeneration
         for (int i = 0; i < nbRandom; i++)
         {
             children[cpt] = new Kevin(7, 8, 3);
+            cpt++;
         }
 
-        for (int i = 0; i < tmp_Children.Length; i++)
-        {
-            Debug.Log("Children[" + i + "] = " + children[i]);
-        }
-    }
-
-    private static float[][][] Copy(float[][][] source)
-    {
-        float[][][] dest = new float[source.Length][][];
-        for (int x = 0; x < source.Length; x++)
-        {
-            float[][] s = new float[source[x].Length][];
-            for (int y = 0; y < source[x].Length; y++)
-            {
-                float[] n = new float[source[x][y].Length];
-                int length = source[x][y].Length * sizeof(int);
-                Buffer.BlockCopy(source[x][y], 0, n, 0, length);
-                s[y] = n;
-            }
-            dest[x] = s;
-        }
-        return dest;
+        return children;
     }
 
 
-    public int GetChildScoreAndUpdateKevin(int index, float score)
+    public void GetChildScore(int index, float score)
     {
         scores[index] = score;
-
-        if (index < nbChildren - 1)
-        {
-            index++;
-            moveHandler.UpdateAI(children[index]);
-        }          
-        else
-        {
-            index = 0;
-            HandleEndOfGeneration();
-            moveHandler.UpdateAI(children[index]);
-        }
-
-        return index;
     }
 
 
-    private void HandleEndOfGeneration()
+    public Kevin[] HandleEndOfGeneration()
     {
         StoreScore();
         UpdateBests();
         StoreBestChildren();
-        SelectGeneration();
+        return SelectGeneration();
     }
 
     public void UpdateBests()
@@ -133,23 +102,19 @@ public class UpdateGeneration
         for (int i = 0; i < nbBest; i++)
         {
             int indexMax = scoresList.IndexOf(scoresList.Max());
-            Debug.Log("Best N°" + i + " is at index " + indexMax + " with a score of " + scoresList[indexMax]);
             bests[i] = children[indexMax];
-            Debug.Log("Best N°" + i + " = " + bests[i]);
             scoresList[indexMax] = 0f;
         }
 
         scores = new float[nbChildren];
     }
 
+
     public void StoreScore()
     {
-        Debug.Log("Entrée dans Store_Score() \n");
-
         String str = "";
 
         string path = Directory.GetCurrentDirectory() + "Score.txt";
-        Debug.Log(path);
 
         for(int i = 0; i < nbChildren; i++)
         { 
@@ -190,8 +155,6 @@ public class UpdateGeneration
 
     public void StoreBestChildren()
     {
-        Debug.Log("Entrée dans Store_State() \n");
-
         String str = "";
 
         for(int i = 0; i < bests.Length; i++)
@@ -201,7 +164,6 @@ public class UpdateGeneration
         }
         
         string path = Directory.GetCurrentDirectory() + "Dataset.txt";
-        Debug.Log(path);
 
         // This text is added only once to the file.
         if (!File.Exists(path))
@@ -236,15 +198,8 @@ public class UpdateGeneration
     private void GetBestsFromFile()
     {
         string path = Directory.GetCurrentDirectory() + "Dataset.txt";
-        string text = System.IO.File.ReadAllText(path);
 
-        // Example #2
-        // Read each line of the file into a string array. Each element
-        // of the array is one line of the file.
         string[] lines = System.IO.File.ReadAllLines(path);
-
-        Debug.Log("First Weights from file : " + lines[0]);
-        Debug.Log("First Biases from file : " + lines[1]);
 
 
         string[][] weightsString = new string[nbBest][];
@@ -298,14 +253,40 @@ public class UpdateGeneration
             flatBestBiases[i] = flatBiases.ToArray();
         }
 
-        Debug.Log("First Weights floated : " + flatBestWeights[0][0] + ", " + flatBestWeights[0][1] + ", " + flatBestWeights[0][2] + ", " + flatBestWeights[0][3]);
-        Debug.Log("First Biases floated : " + flatBestBiases[0][0] + ", " + flatBestBiases[0][1] + ", " + flatBestBiases[0][2] + ", " + flatBestBiases[0][3]);
-
         for (int i = 0; i < nbBest; i++)
         {
             bests[i] = new Kevin(7, 8, 3, flatBestWeights[i], flatBestBiases[i]);
         }
+    }
 
-        Debug.Log("Best Kevin : " + bests[0]);
+    private static float[][][] Copy(float[][][] source)
+    {
+        float[][][] dest = new float[source.Length][][];
+        for (int x = 0; x < source.Length; x++)
+        {
+            float[][] s = new float[source[x].Length][];
+            for (int y = 0; y < source[x].Length; y++)
+            {
+                float[] n = new float[source[x][y].Length];
+                int length = source[x][y].Length * sizeof(int);
+                Buffer.BlockCopy(source[x][y], 0, n, 0, length);
+                s[y] = n;
+            }
+            dest[x] = s;
+        }
+        return dest;
+    }
+
+    private static float[][] Copy(float[][] source)
+    {
+        float[][] dest = new float[source.Length][];
+        for (int x = 0; x < source.Length; x++)
+        {
+            float[] s = new float[source[x].Length];
+            int length = source[x].Length * sizeof(int);
+            Buffer.BlockCopy(source[x], 0, s, 0, length);
+            dest[x] = s;
+        }
+        return dest;
     }
 }

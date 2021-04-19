@@ -90,6 +90,7 @@ public class ShipSpawnerTraining : MonoBehaviour
         obstaclesSpawner.spawn_period = 2;
 
         generation = generationUpdator.HandleEndOfGeneration();
+        obstaclesSpawner.Reset();
         InitVaisseaux();
     }
 }

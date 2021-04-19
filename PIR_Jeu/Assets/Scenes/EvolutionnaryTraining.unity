@@ -727,6 +727,8 @@ MonoBehaviour:
   min_rotation_speed: 1
   max_rotation_speed: 4
   spawn_period: 2
+  loadTemplateFromFile: 1
+  filename: level1.lvl
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

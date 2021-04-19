@@ -87,7 +87,7 @@ public class MoveWithAI : MonoBehaviour
             position_obstacles.Add(tmp);
         }
 
-        foreach (GameObject vaisseau in vaisseaux) //Récupérer pos vaisseau
+        foreach (GameObject vaisseau in vaisseaux) // Récupérer pos vaisseau
         {
             List<float> tmp = new List<float>();
             tmp.Add(vaisseau.transform.position.x);
@@ -97,7 +97,7 @@ public class MoveWithAI : MonoBehaviour
 
         List<List<float>> tmp_pos = position_obstacles;
 
-        for (int i = 0; i < tmp_pos.Count; i++) //Boucle supprimant les astéroïdes dépassant le vaisseau
+        for (int i = 0; i < tmp_pos.Count; i++) // Boucle supprimant les astéroïdes dépassant le vaisseau
         {
             if (position_obstacles[i][1] < -5f || position_obstacles[i][1] > 0.5f)
             {

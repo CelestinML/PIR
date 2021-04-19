@@ -9,9 +9,9 @@ public class UpdateGeneration
     private bool loadFromFile = false;
 
     private int nbChildren = 100;
-    private int nbBest = 10;
-    private int nbChildrenPerBest = 9;
-    private int nbRandom = 10;
+    private int nbBest = 5;
+    private int nbChildrenPerBest = 20;
+    private int nbRandom = 0;
 
     public MoveWithAI moveHandler;
     public ShipSpawnerTraining shipSpawner;
@@ -42,6 +42,8 @@ public class UpdateGeneration
         }
         else
         {
+            EraseTxtFiles();
+
             children = new Kevin[nbChildren];
 
             for (int i = 0; i < nbChildren; i++)
@@ -110,11 +112,26 @@ public class UpdateGeneration
     }
 
 
+
+    private void EraseTxtFiles()
+    {
+        string path = Directory.GetCurrentDirectory() + "/Score.txt";
+
+        if(File.Exists(path))
+        {
+            using (StreamWriter sw = new StreamWriter(path, false))
+            {
+                sw.WriteLine("");
+            }
+        }
+    }
+
+
     public void StoreScore()
     {
         String str = "";
 
-        string path = Directory.GetCurrentDirectory() + "Score.txt";
+        string path = Directory.GetCurrentDirectory() + "/Score.txt";
 
         for(int i = 0; i < nbChildren; i++)
         { 
@@ -129,7 +146,6 @@ public class UpdateGeneration
             using (StreamWriter sw = File.CreateText(path))
             {
                 Debug.Log("No file found");
-                sw.WriteLine("Début du fichier");
             }
         }
 
@@ -163,7 +179,7 @@ public class UpdateGeneration
             str += "\n";
         }
         
-        string path = Directory.GetCurrentDirectory() + "Dataset.txt";
+        string path = Directory.GetCurrentDirectory() + "/Dataset.txt";
 
         // This text is added only once to the file.
         if (!File.Exists(path))
@@ -176,8 +192,7 @@ public class UpdateGeneration
             }
         }
 
-        // This text is always added, making the file longer over time
-        // if it is not deleted.
+        // using append : false allow to overwrite the file
         using (StreamWriter sw = new StreamWriter(path, false))
         {
             sw.WriteLine(str);
@@ -197,7 +212,7 @@ public class UpdateGeneration
 
     private void GetBestsFromFile()
     {
-        string path = Directory.GetCurrentDirectory() + "Dataset.txt";
+        string path = Directory.GetCurrentDirectory() + "/Dataset.txt";
 
         string[] lines = System.IO.File.ReadAllLines(path);
 

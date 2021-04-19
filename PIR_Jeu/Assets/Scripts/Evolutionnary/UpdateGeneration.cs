@@ -121,7 +121,7 @@ public class UpdateGeneration
         {
             using (StreamWriter sw = new StreamWriter(path, false))
             {
-                sw.WriteLine("");
+                sw.Write("");
             }
         }
     }

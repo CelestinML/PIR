@@ -76,8 +76,13 @@ public class ObstaclesSpawnerTraining : MonoBehaviour
             string[] lines = System.IO.File.ReadAllLines(path);
             foreach(string line in lines)
             {
+                Debug.Log(line + "of lenght : " + line.Length);
+                if (line.Length < 11) // Size of a minimum valid line
+                    continue;
+
                 List<bool> row = new List<bool>();
                 string[] lineSplited = line.Split(' ');
+
                 foreach(string charac in lineSplited)
                 {
                     if (charac == "X")
@@ -125,13 +130,15 @@ public class ObstaclesSpawnerTraining : MonoBehaviour
                 obstacle.GetComponent<ChuteAsteroideTraining>().enabled = true;
             }
         }
-        if(templateIndex >= asteroidsTemplate.Count)
+
+        Debug.Log("index : " + templateIndex);
+        Debug.Log("asteroids lenght : " + asteroidsTemplate);
+
+        templateIndex++;
+
+        if (templateIndex >= asteroidsTemplate.Count)
         {
             templateIndex = 0;
-        }
-        else
-        {
-            templateIndex++;
         }
     }
 

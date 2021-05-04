@@ -6,28 +6,20 @@ using UnityEngine.UI;
 
 public class WeaponsManager : MonoBehaviour
 {
-    public AudioSource audio;
+    public bool allow_weapons = true;
+
+    private AudioSource audio_source;
     public GameObject piercing_image;
     public GameObject piercing_shot_ui;
 
-    public string current_projectile = "basic";
+    private string current_projectile = "basic";
     public GameObject basic_projectile;
     public GameObject piercing_projectile;
 
     public GameObject cooldown_sprite;
-    public Sprite cooldown_1;
-    public Sprite cooldown_2;
-    public Sprite cooldown_3;
-    public Sprite cooldown_4;
-    public Sprite cooldown_5;
-    public Sprite cooldown_6;
-    public Sprite cooldown_7;
-    public Sprite cooldown_8;
-    public Sprite cooldown_9;
-    public Sprite cooldown_10;
-    private List<Sprite> cooldown_states;
+    public List<Sprite> cooldown_states;
 
-    public float cooldown = 5;
+    public float cooldown_time = 5;
     private bool can_shoot = true;
     private float time_since_last_shot = 0;
     public int max_number_of_piercing = 5;
@@ -35,20 +27,18 @@ public class WeaponsManager : MonoBehaviour
 
     private void Start()
     {
-        piercing_image.SetActive(false);
-        piercing_shot_ui.SetActive(false);
+        audio_source = GameObject.FindWithTag("Sound").transform.GetChild(0).GetComponent<AudioSource>();
 
-        cooldown_states = new List<Sprite>();
-        cooldown_states.Add(cooldown_1);
-        cooldown_states.Add(cooldown_2);
-        cooldown_states.Add(cooldown_3);
-        cooldown_states.Add(cooldown_4);
-        cooldown_states.Add(cooldown_5);
-        cooldown_states.Add(cooldown_6);
-        cooldown_states.Add(cooldown_7);
-        cooldown_states.Add(cooldown_8);
-        cooldown_states.Add(cooldown_9);
-        cooldown_states.Add(cooldown_10);
+        if (!allow_weapons)
+        {
+            gameObject.SetActive(false);
+        }
+
+        if (piercing_image != null && piercing_shot_ui != null)
+        {
+            piercing_image.SetActive(false);
+            piercing_shot_ui.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -56,7 +46,8 @@ public class WeaponsManager : MonoBehaviour
     {
         if (can_shoot)
         {
-            cooldown_sprite.GetComponent<Image>().sprite = cooldown_states[9];
+            if (cooldown_sprite != null)
+                cooldown_sprite.GetComponent<Image>().sprite = cooldown_states[cooldown_states.Count - 1];
             if (Input.GetButtonDown("Fire1"))
             {
                 if (current_projectile == "basic")
@@ -67,40 +58,47 @@ public class WeaponsManager : MonoBehaviour
                     number_of_piercing_shot++;
                     if (number_of_piercing_shot >= max_number_of_piercing)
                     {
-                        piercing_image.SetActive(false);
-                        piercing_shot_ui.SetActive(false);
+                        if (piercing_image != null && piercing_shot_ui != null)
+                        {
+                            piercing_image.SetActive(false);
+                            piercing_shot_ui.SetActive(false);
+                        }
                         number_of_piercing_shot = 0;
                         current_projectile = "basic";
                     }
-                    piercing_shot_ui.GetComponent<TextMeshProUGUI>().text = "x " + (max_number_of_piercing - number_of_piercing_shot);
+                    if (piercing_shot_ui != null)
+                        piercing_shot_ui.GetComponent<TextMeshProUGUI>().text = "x " + (max_number_of_piercing - number_of_piercing_shot);
                     Instantiate(piercing_projectile, gameObject.transform.position, Quaternion.identity);
                 }
-                audio.Play(0);
+                audio_source.Play(0);
                 can_shoot = false;
             }
         }
         else
         {
             time_since_last_shot += Time.deltaTime;
-            if (time_since_last_shot > cooldown)
+            if (time_since_last_shot > cooldown_time)
             {
                 can_shoot = true;
                 time_since_last_shot = 0;
             }
             else
             {
-                int i = Mathf.FloorToInt((time_since_last_shot / cooldown) * 9);
-                Debug.Log(i);
-                cooldown_sprite.GetComponent<Image>().sprite = cooldown_states[i];
+                int i = Mathf.FloorToInt((time_since_last_shot / cooldown_time) * 9);
+                if (cooldown_sprite != null)
+                    cooldown_sprite.GetComponent<Image>().sprite = cooldown_states[i];
             }
         }
     }
 
     public void AllowPiercing()
     {
-        piercing_shot_ui.GetComponent<TextMeshProUGUI>().text = "x " + max_number_of_piercing;
-        piercing_image.SetActive(true);
-        piercing_shot_ui.SetActive(true);
+        if (piercing_image != null && piercing_shot_ui != null)
+        {
+            piercing_shot_ui.GetComponent<TextMeshProUGUI>().text = "x " + max_number_of_piercing;
+            piercing_image.SetActive(true);
+            piercing_shot_ui.SetActive(true);
+        }
         current_projectile = "piercing";
         //Au cas où il y avait déjà un bonus de piercing
         number_of_piercing_shot = 0;

@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class ShieldManager : MonoBehaviour
 {
-    public bool shield_on = false;
-    public GameObject shield;
+    private bool shield_on = false;
+    private GameObject shield;
     private float counter = 0;
-    public float max_time = 8;
+    public float shield_time = 8;
     private float start_blink_time;
     private float blink_period = 0.2f;
     private float blink_time = 0;
     // Start is called before the first frame update
     void Start()
     {
-        start_blink_time = max_time * 70 / 100;
+        shield = transform.GetChild(0).gameObject;
+
+        start_blink_time = shield_time * 70f / 100f;
         shield.SetActive(false);
     }
 
@@ -22,7 +24,7 @@ public class ShieldManager : MonoBehaviour
     {
         if (shield_on == true)
         {
-            if (counter < max_time)
+            if (counter < shield_time)
             {
                 //if the shield is soon ending
                 if (counter >= start_blink_time)
@@ -50,7 +52,7 @@ public class ShieldManager : MonoBehaviour
        
     }
     // Update is called once per frame
-    public void Turn_On_Shield()
+    public void TurnOnShield()
     {
         shield.SetActive(true);
         shield_on = true;

@@ -14,12 +14,18 @@ public class ChuteAsteroide : MonoBehaviour
 
     private Material material;
     private bool dissolving = false;
-    public float fade_per_second = 2;
+    private float fade_per_second = 2;
     private float fade = 1;
 
     private Animator animator;
 
-    // Start is called before the first frame update
+    private BonusManager bonus_manager;
+
+    public void SetBonusManager(BonusManager bonus_manager)
+    {
+        this.bonus_manager = bonus_manager;
+    }
+
     private void Start()
     {
         material = GetComponent<Renderer>().material;
@@ -62,25 +68,11 @@ public class ChuteAsteroide : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<InfosVaisseau>().ReceiveDamage(1);
+            collision.gameObject.GetComponentInChildren<HealthManager>().ReceiveDamage(1);
             DisableColliders();
             animator.SetBool("Exploding", true);
         }
         
-    }
-
-    public void SpawnBonus()
-    {
-        float r = Random.value;
-        if ( r < 0.1f)
-        {
-            Instantiate(piercing_bonus, transform.position, Quaternion.identity);
-        }
-        else if (r < 0.2f)
-        {
-            Instantiate(shield_bonus, transform.position, Quaternion.identity);
-        }
-        Destroy(gameObject);
     }
 
     private void DisableColliders()
@@ -88,5 +80,11 @@ public class ChuteAsteroide : MonoBehaviour
         BoxCollider2D[] colliders = gameObject.GetComponents<BoxCollider2D>();
         foreach (BoxCollider2D collider in colliders)
             collider.enabled = false;
+    }
+
+    public void SpawnBonus()
+    {
+        bonus_manager.PopBonus(transform.localPosition);
+        Destroy(gameObject);
     }
 }

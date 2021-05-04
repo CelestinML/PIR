@@ -7,6 +7,8 @@ TagManager:
   - Asteroid
   - Undestructible
   - Shield
+  - Sound
+  - Position
   layers:
   - Default
   - TransparentFX

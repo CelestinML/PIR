@@ -35,12 +35,12 @@ public class BonusBehaviour : MonoBehaviour
                 if (projectile_name == "piercing")
                 {
                     Debug.Log("Allowing piercing projectile");
-                    collision.gameObject.GetComponent<WeaponsManager>().AllowPiercing();
+                    collision.transform.GetChild(1).gameObject.GetComponent<WeaponsManager>().AllowPiercing();
                 }
             }
             else if (bonus_type == "shield")
             {
-                collision.gameObject.GetComponent<ShieldManager>().Turn_On_Shield();
+                collision.transform.GetChild(0).GetComponent<ShieldManager>().TurnOnShield();
             }
             
             Destroy(gameObject);

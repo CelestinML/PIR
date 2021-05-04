@@ -40,7 +40,7 @@ public class DeplacementVaisseau : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<InfosVaisseau>().ReceiveDamage(1);
+            collision.gameObject.GetComponentInChildren<HealthManager>().ReceiveDamage(1);
             DisableColliders();
             
             //Lancer une animation de destruction du vaisseau ?

@@ -10,14 +10,11 @@ public class ProjectileBehaviour : MonoBehaviour
 
     public GameObject vaisseau;
 
-    private Transform transform;
-
     private Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform = gameObject.transform;
         cam = Camera.main;
     }
 

@@ -34,17 +34,6 @@ public class InfosVaisseauTraining : MonoBehaviour
     private void Start()
     {
         animator = gameObject.GetComponent<Animator>();
-/*        boost_moments = new List<int>();
-        boost_moments.Add(200);
-        boost_moments.Add(400);
-        boost_moments.Add(800);
-        boost_moments.Add(2000);
-        boost_moments.Add(6000);
-        max_speed_boost_moments = new List<int>();
-        max_speed_boost_moments.Add(1500);
-        max_speed_boost_moments.Add(3000);
-        max_speed_boost_moments.Add(10000);*/
-
         spawnerManagement = Camera.main.GetComponent<ShipSpawnerTraining>();
     }
 
@@ -54,28 +43,6 @@ public class InfosVaisseauTraining : MonoBehaviour
         if (!stop_score)
             score += Time.fixedDeltaTime * points_per_second;
 
-        //On détermine si un boost de période de spawn doit être fait
-/*        if (boost_moments.Contains(Mathf.FloorToInt(score)))
-        {
-            if (!period_boost_block)
-            {
-                Camera.main.GetComponent<ObstaclesSpawnerTraining>().spawn_period *= 0.8f;
-                period_boost_block = true;
-            }
-        }
-        else if (period_boost_block)
-            period_boost_block = false;
-        //On détermine si un boost de vitesse max de chute doit être fait
-        if (max_speed_boost_moments.Contains(Mathf.FloorToInt(score)))
-        {
-            if (!max_speed_boost_block)
-            {
-                Camera.main.GetComponent<ObstaclesSpawnerTraining>().max_fall_speed *= 1.5f;
-                max_speed_boost_block = true;
-            }
-        }
-        else if (max_speed_boost_block)
-            max_speed_boost_block = false;*/
         //On détermine si le vaisseau est invincible ou non
         if (invincible)
         {
@@ -107,10 +74,6 @@ public class InfosVaisseauTraining : MonoBehaviour
 
             if (points_de_vie == 0)
             {
-                // explosion_audio.Play(0);
-                // stop_score = true;
-                // animator.SetBool("dead", true);
-                // gameOver_manager.GetComponent<GameOverManager>().showMenu();
                 HandleVaisseauDeath();
             }
             else
@@ -130,9 +93,6 @@ public class InfosVaisseauTraining : MonoBehaviour
 
     public void HandleVaisseauDeath()
     {
-        // GetComponent<SpriteRenderer>().enabled = false; // hide the vaisseau
-        // DisableColliders();
-
         spawnerManagement.UpdateChildScore(gameObject, score);
         gameObject.SetActive(false);
     }

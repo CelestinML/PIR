@@ -9,9 +9,11 @@ public class UpdateGeneration
     private bool loadFromFile = false;
 
     private int nbChildren = 100;
-    private int nbBest = 5;
-    private int nbChildrenPerBest = 20;
+    private int nbBest = 25;
+    private int nbChildrenPerBest = 4;
     private int nbRandom = 0;
+    private float mutationIntensity = 0.1f;
+    private float mutationProba = 0.1f;
 
     public MoveWithAI moveHandler;
     public ShipSpawnerTraining shipSpawner;
@@ -48,7 +50,7 @@ public class UpdateGeneration
 
             for (int i = 0; i < nbChildren; i++)
             {
-                children[i] = new Kevin(7, 8, 3);
+                children[i] = new Kevin(7, 8, 3, mutationProba, mutationIntensity);
             }
 
             return children;
@@ -65,7 +67,7 @@ public class UpdateGeneration
             for(int j = 0; j < nbChildrenPerBest; j++)
             {
                 // Kevin tmp = new Kevin();     
-                Kevin tmp = new Kevin(Copy(bests[i].Weights), Copy(bests[i].Biases));
+                Kevin tmp = new Kevin(Copy(bests[i].Weights), Copy(bests[i].Biases), mutationProba, mutationIntensity);
                 tmp.Mutate();
                 children[cpt] = tmp;
                 cpt++;
@@ -74,7 +76,7 @@ public class UpdateGeneration
 
         for (int i = 0; i < nbRandom; i++)
         {
-            children[cpt] = new Kevin(7, 8, 3);
+            children[cpt] = new Kevin(7, 8, 3, mutationProba, mutationIntensity);
             cpt++;
         }
 
@@ -179,7 +181,7 @@ public class UpdateGeneration
             str += "\n";
         }
         
-        string path = Directory.GetCurrentDirectory() + "/Dataset.txt";
+        string path = Directory.GetCurrentDirectory() + "/BestChildren.txt";
 
         // This text is added only once to the file.
         if (!File.Exists(path))
@@ -212,7 +214,7 @@ public class UpdateGeneration
 
     private void GetBestsFromFile()
     {
-        string path = Directory.GetCurrentDirectory() + "/Dataset.txt";
+        string path = Directory.GetCurrentDirectory() + "/BestChildren.txt";
 
         string[] lines = System.IO.File.ReadAllLines(path);
 
@@ -270,7 +272,7 @@ public class UpdateGeneration
 
         for (int i = 0; i < nbBest; i++)
         {
-            bests[i] = new Kevin(7, 8, 3, flatBestWeights[i], flatBestBiases[i]);
+            bests[i] = new Kevin(7, 8, 3, flatBestWeights[i], flatBestBiases[i], mutationProba, mutationIntensity);
         }
     }
 

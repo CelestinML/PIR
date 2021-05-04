@@ -16,24 +16,17 @@ public class Kevin
     public float[][][] Weights { get => weights; set => weights = value; }
     public float[][] Biases { get => biases; set => biases = value; }
 
-    public Kevin(int inputsSize, int hiddenLayerSize, int outputsSize)
-    {
-        this.shape = new int[4] { inputsSize, hiddenLayerSize, hiddenLayerSize, outputsSize };
 
-        mutationProba = 0.2f;
-        mutationIntensity = 0.2f;
 
-        InitNeurons();
-        InitWeights();
-        InitBiases();
-    }
-
+    // Create a new neural network with 7 inputs neurons, 2 hidden layers of 8 neurons, 6 outputs neurons.
+    // The wieghts and biases are randomly initialized.
+    // The mutation intensity and proba are to their default value : 0.1f.
     public Kevin()
     {
         this.shape = new int[4] { 7, 8, 8, 3 };
 
-        mutationProba = 0.2f;
-        mutationIntensity = 0.2f;
+        mutationProba = 0.1f;
+        mutationIntensity = 0.1f;
 
         InitNeurons();
         InitWeights();
@@ -41,9 +34,63 @@ public class Kevin
     }
 
 
-    public Kevin(int inputsSize, int hiddenLayerSize, int outputsSize, float[] pFlatWeights, float[] pFlatBiases)
+    // Create a new neural network with 7 inputs neurons, 2 hidden layers of 8 neurons, 3 outputs neurons.
+    // The wieghts and biases are initialized from pWeights and pBiases.
+    // The mutation intensity and proba are set to pMutationProba and pMutationIntensity.
+    public Kevin(float[][][] pWeights, float[][] pBiases, float pMutationProba, float pMutationIntensity)
+    {
+        this.shape = new int[4] { 7, 8, 8, 3 };
+        this.weights = pWeights;
+        this.biases = pBiases;
+
+        mutationProba = pMutationProba;
+        mutationIntensity = pMutationIntensity;
+
+        InitNeurons();
+    }
+
+
+    // Create a new neural network with inputsSize inputs neurons, 2 hidden layers of hiddenLayerSize neurons, outputsSize outputs neurons.
+    // The wieghts and biases are randomly initialized.
+    // The mutation intensity and proba are to their default value : 0.1f.
+    public Kevin(int inputsSize, int hiddenLayerSize, int outputsSize)
     {
         this.shape = new int[4] { inputsSize, hiddenLayerSize, hiddenLayerSize, outputsSize };
+
+        mutationProba = 0.1f;
+        mutationIntensity = 0.1f;
+
+        InitNeurons();
+        InitWeights();
+        InitBiases();
+    }
+
+
+    // Create a new neural network with inputsSize inputs neurons, 2 hidden layers of hiddenLayerSize neurons, outputsSize outputs neurons.
+    // The wieghts and biases are randomly initialized.
+    // The mutation intensity and proba are set to pMutationProba and pMutationIntensity.
+    public Kevin(int inputsSize, int hiddenLayerSize, int outputsSize, float pMutationProba, float pMutationIntensity)
+    {
+        this.shape = new int[4] { inputsSize, hiddenLayerSize, hiddenLayerSize, outputsSize };
+
+        mutationProba = pMutationProba;
+        mutationIntensity = pMutationIntensity;
+
+        InitNeurons();
+        InitWeights();
+        InitBiases();
+    }
+
+
+    // Create a new neural network with inputsSize inputs neurons, 2 hidden layers of hiddenLayerSize neurons, outputsSize outputs neurons
+    // The wieghts and biases are initialized from pFlatWeights and pFlatBiases.
+    // The mutation intensity and proba are set to pMutationProba and pMutationIntensity.
+    public Kevin(int inputsSize, int hiddenLayerSize, int outputsSize, float[] pFlatWeights, float[] pFlatBiases, float pMutationProba, float pMutationIntensity)
+    {
+        this.shape = new int[4] { inputsSize, hiddenLayerSize, hiddenLayerSize, outputsSize };
+
+        mutationProba = pMutationProba;
+        mutationIntensity = pMutationIntensity;
 
         InitNeurons();
 
@@ -51,27 +98,18 @@ public class Kevin
         InitBiasesWithParams(pFlatBiases);
     }
 
-    public Kevin(int inputsSize, int hiddenLayerSize, int outputsSize, float[][][] pWeights, float[][] pBiases)
+
+    // Create a new neural network with inputsSize inputs neurons, 2 hidden layers of hiddenLayerSize neurons, outputsSize outputs neurons
+    // The wieghts and biases are initialized from pWeights and pBiases.
+    // The mutation intensity and proba are set to pMutationProba and pMutationIntensity.
+    public Kevin(int inputsSize, int hiddenLayerSize, int outputsSize, float[][][] pWeights, float[][] pBiases, float pMutationProba, float pMutationIntensity)
     {
         this.shape = new int[4] { inputsSize, hiddenLayerSize, hiddenLayerSize, outputsSize };
         this.weights = pWeights;
         this.biases = pBiases;
 
-        mutationProba = 0.2f;
-        mutationIntensity = 0.2f;
-
-        InitNeurons();
-    }
-
-
-    public Kevin(float[][][] pWeights, float[][] pBiases)
-    {
-        this.shape = new int[4] { 7, 8, 8, 3 };
-        this.weights = pWeights;
-        this.biases = pBiases;
-
-        mutationProba = 0.2f;
-        mutationIntensity = 0.2f;
+        mutationProba = pMutationProba;
+        mutationIntensity = pMutationIntensity;
 
         InitNeurons();
     }
@@ -178,58 +216,15 @@ public class Kevin
     }
 
 
-    /**************************************************************
-      NETWORK INITIALIZATION WITH PARAMETRIZED WEIGHTS AND BIASES 
-    **************************************************************/
-
-    /*    private void LoadWeights(float[][][] pWeights)
-        {
-            List<float[][]> weightsList = new List<float[][]>();
-            for (int i = 1; i < shape.Length; i++)
-            {
-                List<float[]> layerWeightsList = new List<float[]>();
-                int neuronsInPreviousLayer = shape[i - 1];
-                for (int j = 0; j < neurons[i].Length; j++)
-                {
-                    float[] neuronWeights = new float[neuronsInPreviousLayer];
-                    for (int k = 0; k < neuronsInPreviousLayer; k++)
-                    {
-                        neuronWeights[k] = pWeights[i][j][k];
-                    }
-                    layerWeightsList.Add(neuronWeights);
-                }
-                weightsList.Add(layerWeightsList.ToArray());
-            }
-            weights = weightsList.ToArray();
-        }
-
-        private void LoadBiases(float[][] pBiases)
-        {
-            List<float[]> biasList = new List<float[]>();
-            for (int i = 0; i < shape.Length; i++)
-            {
-                float[] bias = new float[shape[i]];
-                for (int j = 0; j < shape[i]; j++)
-                {
-                    bias[j] = pBiases[i][j];
-                }
-                biasList.Add(bias);
-            }
-            biases = biasList.ToArray();
-        }*/
-
-
-
-    /********************
-      FEEDFORWARD LOGIC
-    ********************/
-
     private float Activate(float x)
     {
         return (float)System.Math.Tanh(x);
     }
 
 
+    /********************
+      FEEDFORWARD LOGIC
+    ********************/
     public float[] FeedForward(float[] pInputs)
     {
         float value;

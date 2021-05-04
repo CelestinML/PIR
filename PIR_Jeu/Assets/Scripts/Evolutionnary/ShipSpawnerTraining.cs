@@ -4,7 +4,7 @@ using UnityEngine;
 public class ShipSpawnerTraining : MonoBehaviour
 {
     // generation parameter and dead vaisseaux tracker
-    public int nbVaisseauToSpawn = 100;
+    public int nbVaisseauToSpawn = 300;
     private int deadVaisseau = 0;
 
     // gameObject init

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+
+using UnityEngine.SceneManagement;
 
 public class InfosVaisseau : MonoBehaviour
 {
@@ -40,6 +43,9 @@ public class InfosVaisseau : MonoBehaviour
     private bool max_speed_boost_block = false;
     private List<int> max_speed_boost_moments;
 
+    public string score_file;
+    private int lives_at_1500 = 0;
+
     private void Start()
     {
         animator = gameObject.GetComponent<Animator>();
@@ -53,6 +59,14 @@ public class InfosVaisseau : MonoBehaviour
         max_speed_boost_moments.Add(1500);
         max_speed_boost_moments.Add(3000);
         max_speed_boost_moments.Add(10000);
+    }
+
+    private void Update()
+    {
+        if (score >= 1500 && score <= 1520)
+        {
+            lives_at_1500 = points_de_vie;
+        }
     }
 
     private void FixedUpdate()
@@ -114,12 +128,15 @@ public class InfosVaisseau : MonoBehaviour
             {
                 points_de_vie -= damage;
                 vies_ui.GetComponent<TextMeshProUGUI>().text = "Vies : " + Mathf.Max(0, points_de_vie);
-                if (points_de_vie <= 0)
+                if (points_de_vie == 0)
                 {
                     explosion_audio.Play(0);
                     stop_score = true;
                     animator.SetBool("dead", true);
-                    gameOver_manager.GetComponent<GameOverManager>().showMenu();
+
+                    File.AppendAllText(score_file, ((int)score).ToString() + " " + lives_at_1500.ToString() + "\n");
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
                 }
                 else
                 {

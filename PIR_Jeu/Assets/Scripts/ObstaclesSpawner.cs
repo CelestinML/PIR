@@ -18,9 +18,13 @@ public class ObstaclesSpawner : MonoBehaviour
 
     private List<Vector3> spawn_points = new List<Vector3>();
 
+    public float timeScale = 1f;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = timeScale;
         spawn_points.Add(new Vector3(-3.61f, 5.75f, 0));
         spawn_points.Add(new Vector3(-2.18f, 5.75f, 0));
         spawn_points.Add(new Vector3(-0.78f, 5.75f, 0));
@@ -72,7 +76,9 @@ public class ObstaclesSpawner : MonoBehaviour
                 //On active le script de déplacement du vaisseau (après avoir déterminé les paramètres uniquement)
                 obstacle.GetComponent<DeplacementVaisseau>().enabled = true;
             }
-            
+
+            obstacle.GetComponent<Renderer>().enabled = false;
+
             remaining_positions.RemoveAt(position_number);
         }
     }

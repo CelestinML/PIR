@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -689,7 +689,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
-  - component: {fileID: 519420033}
   - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
@@ -727,6 +726,7 @@ MonoBehaviour:
   min_rotation_speed: 1
   max_rotation_speed: 2
   spawn_period: 2
+  timeScale: 60
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -788,20 +788,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c745adb28013add4195caaa0873a724a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstacles: []
-  vaisseau: {fileID: 1956508893}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2535,7 +2521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38aec8eb21e01094ab2586ecc75914da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToStart: AIPlayerScene
 --- !u!114 &1866583266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2631,6 +2616,7 @@ GameObject:
   - component: {fileID: 1920925696}
   - component: {fileID: 1920925694}
   - component: {fileID: 1920925695}
+  - component: {fileID: 1920925697}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -2703,6 +2689,37 @@ Transform:
   m_Father: {fileID: 519420032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1920925697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920925693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1941069131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2854,6 +2871,7 @@ GameObject:
   - component: {fileID: 1956508900}
   - component: {fileID: 1956508894}
   - component: {fileID: 1956508902}
+  - component: {fileID: 1956508903}
   m_Layer: 11
   m_Name: vaisseau
   m_TagString: Player
@@ -3077,6 +3095,20 @@ MonoBehaviour:
   shield: {fileID: 745277601}
   points_de_vie: 3
   temps_invincibilite: 1
+  score_file: scoresv1.txt
+--- !u!114 &1956508903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956508893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 560fad3bb81b46b438eff82596c64b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deplacement: {fileID: 1956508895}
 --- !u!1 &1976274103
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,2 @@
+Z:\INSA\PIR\PIR_Jeu\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+Z:\INSA\PIR\PIR_Jeu\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

@@ -30,9 +30,10 @@ public class ChuteAsteroide : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        transform.Rotate(new Vector3(0, 0, 1), rotation_speed);
+        //transform.Rotate(new Vector3(0, 0, 1), rotation_speed);
         transform.position += new Vector3(0, -(falling_speed * Time.fixedDeltaTime), 0);
         Vector3 position_in_camera = cam.WorldToViewportPoint(transform.position);
+        /*
         if (dissolving)
         {
             fade -= fade_per_second * Time.fixedDeltaTime;
@@ -42,6 +43,7 @@ public class ChuteAsteroide : MonoBehaviour
                 SpawnBonus();
             }
         }
+        */
         if (position_in_camera.y < -0.1)
         {
             Destroy(gameObject);

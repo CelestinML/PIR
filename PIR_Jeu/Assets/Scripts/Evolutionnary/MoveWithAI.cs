@@ -15,6 +15,9 @@ public class MoveWithAI : MonoBehaviour
     private float[] inputs;
     private float[] outputs;
 
+    public Transform raycastLeft, raycastMiddle, raycastRight; // origine des raycast
+    public LayerMask layerMask; // quel est le layer de collision pour le raycast
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +46,7 @@ public class MoveWithAI : MonoBehaviour
         {
             compteur = 0f;
 
-            Update_input();
+            Update_Inputs_Raycast();
             outputs = kevin.FeedForward(inputs);
             direction = GetMove();
         }
@@ -71,6 +74,36 @@ public class MoveWithAI : MonoBehaviour
         return tmpOutputs.IndexOf(tmpOutputs.Max());
     }
 
+
+    public void Update_Inputs_Raycast()
+    {
+        List<RaycastHit2D> raycasts = new List<RaycastHit2D>();
+
+        raycasts.Add(Physics2D.Raycast(raycastMiddle.position, Vector2.up, 10f, layerMask)); // middle up shot
+
+        raycasts.Add(Physics2D.Raycast(raycastLeft.position, Vector2.left, 10f, layerMask)); // left left shot
+        raycasts.Add(Physics2D.Raycast(raycastRight.position, Vector2.right, 10f, layerMask)); // right right shot
+
+        raycasts.Add(Physics2D.Raycast(raycastLeft.position, Vector2.up, 10f, layerMask)); // left up shot
+        raycasts.Add(Physics2D.Raycast(raycastRight.position, Vector2.up, 10f, layerMask)); // right up shot
+
+
+        raycasts.Add(Physics2D.Raycast(raycastMiddle.position, Quaternion.Euler(0, -10, 0) * Vector2.up, 10f, layerMask)); // 10 degrees middle left shot
+        raycasts.Add(Physics2D.Raycast(raycastMiddle.position, Quaternion.Euler(0, 10, 0) * Vector2.up, 10f, layerMask)); // 10 degrees middle right shot
+
+        for (int i = 0; i < raycasts.Count; i++)
+        {
+            if (raycasts[i].collider != null)
+            {
+                inputs[i] = raycasts[i].distance;
+            }
+            else
+            {
+                inputs[i] = 10f;
+            }
+            Debug.Log("Raycast n" + i + " : " + inputs[i]);
+        }
+    }
 
     void Update_input()
     {

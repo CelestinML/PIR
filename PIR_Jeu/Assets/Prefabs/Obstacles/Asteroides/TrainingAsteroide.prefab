@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 6438869866395890299}
   - component: {fileID: 2830692930179973666}
   - component: {fileID: 760167614612251492}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TrainingAsteroide
   m_TagString: Asteroid
   m_Icon: {fileID: 0}
@@ -359,6 +359,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   falling_speed: 1
   rotation_speed: 1
-  piercing_bonus: {fileID: 0}
-  shield_bonus: {fileID: 0}
   fade_per_second: 2

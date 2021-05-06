@@ -21,7 +21,7 @@ public class ObstaclesSpawnerTraining : MonoBehaviour
     private List<List<bool>> asteroidsTemplate = new List<List<bool>>();
     private int templateIndex = 0;
 
-    public bool loadTemplateFromFile = true;
+    public bool loadTemplateFromFile = false;
     public string filename = "level1.lvl";
 
     // Start is called before the first frame update

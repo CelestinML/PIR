@@ -9,11 +9,11 @@ public class UpdateGeneration
     private bool loadFromFile = false;
 
     private int nbChildren = 100;
-    private int nbBest = 25;
-    private int nbChildrenPerBest = 4;
-    private int nbRandom = 0;
-    private float mutationIntensity = 0.1f;
-    private float mutationProba = 0.1f;
+    private int nbBest = 10;
+    private int nbChildrenPerBest = 9;
+    private int nbRandom = 10;
+    private float mutationIntensity = 0.2f;
+    private float mutationProba = 0.2f;
 
     public MoveWithAI moveHandler;
     public ShipSpawnerTraining shipSpawner;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5625816072747074712}
   - component: {fileID: 3552384653142281685}
   - component: {fileID: 4634594021500329912}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TrainingVaisseau
   m_TagString: Undestructible
   m_Icon: {fileID: 0}

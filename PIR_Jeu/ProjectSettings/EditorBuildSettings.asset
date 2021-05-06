@@ -5,13 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: a7c3b966dcaac76489f60dcfefada0d8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HumanPlayerScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MLAgents.unity
     guid: 340ae808ef036cf45917a23d1f0d5665
+  - enabled: 1
+    path: Assets/Scenes/EvolutionnaryTraining.unity
+    guid: d18d69480c86e8347a59b45e146d11ac
   m_configObjects: {}

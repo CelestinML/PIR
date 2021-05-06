@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -727,7 +727,7 @@ MonoBehaviour:
   min_rotation_speed: 1
   max_rotation_speed: 4
   spawn_period: 2
-  loadTemplateFromFile: 1
+  loadTemplateFromFile: 0
   filename: level3.lvl
 --- !u!20 &519420031
 Camera:

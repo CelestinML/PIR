@@ -20,7 +20,7 @@ public class Kevin
     // The mutation intensity and proba are to their default value : 0.1f.
     public Kevin()
     {
-        this.shape = new int[4] { 7, 8, 8, 3 };
+        this.shape = new int[4] { 9, 8, 8, 3 };
 
         mutationProba = 0.1f;
         mutationIntensity = 0.1f;
@@ -36,7 +36,7 @@ public class Kevin
     // The mutation intensity and proba are set to pMutationProba and pMutationIntensity.
     public Kevin(float[][][] pWeights, float[][] pBiases, float pMutationProba, float pMutationIntensity)
     {
-        this.shape = new int[4] { 7, 8, 8, 3 };
+        this.shape = new int[4] { 9, 8, 8, 3 };
         this.Weights = pWeights;
         this.Biases = pBiases;
 

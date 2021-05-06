@@ -21,7 +21,7 @@ public class MoveWithAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inputs = new float[7];
+        inputs = new float[9];
         outputs = new float[3];
     }
 
@@ -97,9 +97,11 @@ public class MoveWithAI : MonoBehaviour
         raycasts.Add(Physics2D.Raycast(raycastLeft.position, Vector2.up, 10f, layerMask)); // left up shot
         raycasts.Add(Physics2D.Raycast(raycastRight.position, Vector2.up, 10f, layerMask)); // right up shot
 
+        raycasts.Add(Physics2D.Raycast(raycastMiddle.position, Quaternion.Euler(0, 0, -10) * Vector2.up, 10f, layerMask)); // 10 degrees middle left shot
+        raycasts.Add(Physics2D.Raycast(raycastMiddle.position, Quaternion.Euler(0, 0, -10) * Vector2.up, 10f, layerMask)); // 10 degrees middle right shot
 
-        raycasts.Add(Physics2D.Raycast(raycastMiddle.position, Quaternion.Euler(0, -10, 0) * Vector2.up, 10f, layerMask)); // 10 degrees middle left shot
-        raycasts.Add(Physics2D.Raycast(raycastMiddle.position, Quaternion.Euler(0, 10, 0) * Vector2.up, 10f, layerMask)); // 10 degrees middle right shot
+        raycasts.Add(Physics2D.Raycast(raycastMiddle.position, Quaternion.Euler(0, 0, -20) * Vector2.up, 10f, layerMask)); // 20 degrees middle left shot
+        raycasts.Add(Physics2D.Raycast(raycastMiddle.position, Quaternion.Euler(0, 0, -20) * Vector2.up, 10f, layerMask)); // 20 degrees middle right shot
 
         for (int i = 0; i < raycasts.Count; i++)
         {

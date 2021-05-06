@@ -9,11 +9,11 @@ public class UpdateGeneration
     private bool loadFromFile = false;
 
     private int nbChildren = 100;
-    private int nbBest = 4;
-    private int nbChildrenPerBest = 25;
+    private int nbBest = 10;
+    private int nbChildrenPerBest = 10;
     private int nbRandom = 0;
-    private float mutationIntensity = 0f;
-    private float mutationProba = 0f;
+    private float mutationIntensity = 0.1f;
+    private float mutationProba = 0.2f;
 
     public MoveWithAI moveHandler;
     public ShipSpawnerTraining shipSpawner;
@@ -50,7 +50,7 @@ public class UpdateGeneration
 
             for (int i = 0; i < nbChildren; i++)
             {
-                children[i] = new Kevin(7, 8, 3, mutationProba, mutationIntensity);
+                children[i] = new Kevin(9, 8, 3, mutationProba, mutationIntensity);
             }
             return children;
         }
@@ -75,7 +75,7 @@ public class UpdateGeneration
 
         for (int i = 0; i < nbRandom; i++)
         {
-            children[cpt] = new Kevin(7, 8, 3, mutationProba, mutationIntensity);
+            children[cpt] = new Kevin(9, 8, 3, mutationProba, mutationIntensity);
             cpt++;
         }
 

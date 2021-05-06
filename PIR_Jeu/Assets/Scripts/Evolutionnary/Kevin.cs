@@ -7,14 +7,11 @@ public class Kevin
     private int[] shape;
 
     private float[][] neurons;
-    private float[][][] weights;
-    private float[][] biases;
-
     private float mutationProba;
     private float mutationIntensity;
 
-    public float[][][] Weights { get => weights; set => weights = value; }
-    public float[][] Biases { get => biases; set => biases = value; }
+    public float[][][] Weights { get; set; }
+    public float[][] Biases { get; set; }
 
 
 
@@ -40,8 +37,8 @@ public class Kevin
     public Kevin(float[][][] pWeights, float[][] pBiases, float pMutationProba, float pMutationIntensity)
     {
         this.shape = new int[4] { 7, 8, 8, 3 };
-        this.weights = pWeights;
-        this.biases = pBiases;
+        this.Weights = pWeights;
+        this.Biases = pBiases;
 
         mutationProba = pMutationProba;
         mutationIntensity = pMutationIntensity;
@@ -105,8 +102,8 @@ public class Kevin
     public Kevin(int inputsSize, int hiddenLayerSize, int outputsSize, float[][][] pWeights, float[][] pBiases, float pMutationProba, float pMutationIntensity)
     {
         this.shape = new int[4] { inputsSize, hiddenLayerSize, hiddenLayerSize, outputsSize };
-        this.weights = pWeights;
-        this.biases = pBiases;
+        this.Weights = pWeights;
+        this.Biases = pBiases;
 
         mutationProba = pMutationProba;
         mutationIntensity = pMutationIntensity;
@@ -150,7 +147,7 @@ public class Kevin
             }
             weightsList.Add(layerWeightsList.ToArray());
         }
-        weights = weightsList.ToArray();
+        Weights = weightsList.ToArray();
     }
 
     private void InitWeightsWithParams(float[] pWeights)
@@ -176,7 +173,7 @@ public class Kevin
             }
             weightsList.Add(layerWeightsList.ToArray());
         }
-        weights = weightsList.ToArray();
+        Weights = weightsList.ToArray();
     }
 
 
@@ -193,7 +190,7 @@ public class Kevin
             }
             biasList.Add(bias);
         }
-        biases = biasList.ToArray();
+        Biases = biasList.ToArray();
     }
 
 
@@ -212,13 +209,14 @@ public class Kevin
             }
             biasList.Add(bias);
         }
-        biases = biasList.ToArray();
+        Biases = biasList.ToArray();
     }
 
 
     private float Activate(float x)
     {
-        return (float)System.Math.Tanh(x);
+        // return (float) Math.Tanh(x);
+        return x;
     }
 
 
@@ -232,16 +230,16 @@ public class Kevin
         {
             neurons[0][i] = pInputs[i];
         }
-        for (int i = 1; i < shape.Length; i++)
+        for (int i = 1; i < shape.Length; i++) // for each layer
         {
-            for (int j = 0; j < neurons[i].Length; j++)
+            for (int j = 0; j < neurons[i].Length; j++) // for each neuron in layer
             {
                 value = 0f;
-                for (int k = 0; k < neurons[i - 1].Length; k++)
+                for (int k = 0; k < neurons[i - 1].Length; k++) // for each neurons in previous layer
                 {
-                    value += weights[i - 1][j][k] * neurons[i - 1][k];
+                    value += Weights[i - 1][j][k] * neurons[i - 1][k];
                 }
-                neurons[i][j] = Activate(value + biases[i][j]);
+                neurons[i][j] = Activate(value + Biases[i][j]);
             }
         }
         return neurons[shape.Length - 1];
@@ -256,16 +254,16 @@ public class Kevin
 
     private void MutateWeights()
     {
-        for (int i = 0; i < weights.Length; i++)
+        for (int i = 0; i < Weights.Length; i++)
         {
-            for (int j = 0; j < weights[i].Length; j++)
+            for (int j = 0; j < Weights[i].Length; j++)
             {
-                for (int k = 0; k < weights[i][j].Length; k++)
+                for (int k = 0; k < Weights[i][j].Length; k++)
                 {
                     if (UnityEngine.Random.value <= mutationProba)
                     {
                         float randomValue = UnityEngine.Random.value;
-                        weights[i][j][k] = weights[i][j][k] + ((randomValue - 0.5f) * 2 * mutationIntensity);
+                        Weights[i][j][k] = Weights[i][j][k] + ((randomValue - 0.5f) * 2 * mutationIntensity);
                     }
                 }
             }
@@ -275,13 +273,13 @@ public class Kevin
 
     private void MutateBiases()
     {
-        for (int i = 0; i < biases.Length; i++)
+        for (int i = 0; i < Biases.Length; i++)
         {
-            for (int j = 0; j < biases[i].Length; j++)
+            for (int j = 0; j < Biases[i].Length; j++)
             {
                 if (UnityEngine.Random.value <= mutationProba)
                 {
-                    biases[i][j] = biases[i][j] + ((UnityEngine.Random.value - 0.5f) * 2 * mutationIntensity);
+                    Biases[i][j] = Biases[i][j] + ((UnityEngine.Random.value - 0.5f) * 2 * mutationIntensity);
                 }
             }
         }
@@ -304,13 +302,13 @@ public class Kevin
     {
         String str = "";
 
-        for (int i = 0; i < weights.Length; i++)
+        for (int i = 0; i < Weights.Length; i++)
         {
-            for (int j = 0; j < weights[i].Length; j++)
+            for (int j = 0; j < Weights[i].Length; j++)
             {
-                for (int k = 0; k < weights[i][j].Length; k++)
+                for (int k = 0; k < Weights[i][j].Length; k++)
                 {
-                    str += (weights[i][j][k]).ToString();
+                    str += (Weights[i][j][k]).ToString();
                     str += " ";
                 }
             }
@@ -318,11 +316,11 @@ public class Kevin
 
         str += "\n";
 
-        for (int i = 0; i < biases.Length; i++)
+        for (int i = 0; i < Biases.Length; i++)
         {
-            for (int j = 0; j < biases[i].Length; j++)
+            for (int j = 0; j < Biases[i].Length; j++)
             {
-                str += (biases[i][j]).ToString();
+                str += (Biases[i][j]).ToString();
                 str += " ";
             }
         }

@@ -76,7 +76,6 @@ public class ObstaclesSpawnerTraining : MonoBehaviour
             string[] lines = System.IO.File.ReadAllLines(path);
             foreach(string line in lines)
             {
-                Debug.Log(line + "of lenght : " + line.Length);
                 if (line.Length < 11) // Size of a minimum valid line
                     continue;
 
@@ -130,9 +129,6 @@ public class ObstaclesSpawnerTraining : MonoBehaviour
                 obstacle.GetComponent<ChuteAsteroideTraining>().enabled = true;
             }
         }
-
-        Debug.Log("index : " + templateIndex);
-        Debug.Log("asteroids lenght : " + asteroidsTemplate);
 
         templateIndex++;
 

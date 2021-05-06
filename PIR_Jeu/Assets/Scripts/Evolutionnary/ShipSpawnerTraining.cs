@@ -4,7 +4,7 @@ using UnityEngine;
 public class ShipSpawnerTraining : MonoBehaviour
 {
     // generation parameter and dead vaisseaux tracker
-    public int nbVaisseauToSpawn = 300;
+    public int nbVaisseauToSpawn = 100;
     private int deadVaisseau = 0;
 
     // gameObject init
@@ -51,22 +51,19 @@ public class ShipSpawnerTraining : MonoBehaviour
 
     public void UpdateChildScore(GameObject vaisseau, float score)
     {
-        lock(this)
+        int index = vaisseaux.IndexOf(vaisseau);
+        generationUpdator.GetChildScore(index, score);
+
+        deadVaisseau++;
+
+        if (deadVaisseau == nbVaisseauToSpawn)
         {
-            int index = vaisseaux.IndexOf(vaisseau);
-            generationUpdator.GetChildScore(index, score);
-
-            deadVaisseau++;
-
-            if (deadVaisseau == nbVaisseauToSpawn)
+            for (int i = 0; i < nbVaisseauToSpawn; i++)
             {
-                for (int i = 0; i < nbVaisseauToSpawn; i++)
-                {
-                    Destroy(vaisseaux[i]);
-                }
-                deadVaisseau = 0;
-                ReloadGame();
+                Destroy(vaisseaux[i]);
             }
+            deadVaisseau = 0;
+            ReloadGame();
         }
     }
 

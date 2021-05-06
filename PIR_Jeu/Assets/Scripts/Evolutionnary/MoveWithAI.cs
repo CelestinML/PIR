@@ -21,7 +21,6 @@ public class MoveWithAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        kevin = new Kevin(7, 8, 3);
         inputs = new float[7];
         outputs = new float[3];
     }
@@ -48,6 +47,17 @@ public class MoveWithAI : MonoBehaviour
 
             Update_Inputs_Raycast();
             outputs = kevin.FeedForward(inputs);
+
+/*            for (int i = 0; i < inputs.Length; i++)
+            {
+                Debug.Log("inputs " + i + " : " + inputs[i]);
+            }
+
+            for (int i = 0; i < outputs.Length; i++)
+            {
+                Debug.Log("outputs " + i + " : " + outputs[i]);
+            }*/
+
             direction = GetMove();
         }
 
@@ -101,7 +111,6 @@ public class MoveWithAI : MonoBehaviour
             {
                 inputs[i] = 10f;
             }
-            Debug.Log("Raycast n" + i + " : " + inputs[i]);
         }
     }
 

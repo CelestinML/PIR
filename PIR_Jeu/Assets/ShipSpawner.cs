@@ -20,8 +20,15 @@ public class ShipSpawner : MonoBehaviour
 
     private List<GameObject> alive_ships;
 
+    public Transform projectile_barrier;
+
+    public Transform column_positions_transform;
+    private List<Vector3> column_positions;
+
     private void Start()
     {
+        //CALCULER LES POSITIONS DES COLONNES
+
         if (!allow_weapons)
         {
             piercing_shot_ui.SetActive(false);
@@ -45,6 +52,8 @@ public class ShipSpawner : MonoBehaviour
             alive_ships.Add(Instantiate(ship_prefab, transform));
             alive_ships[alive_ships.Count - 1].GetComponentInChildren<HealthManager>().SetShipSpawner(this);
             alive_ships[alive_ships.Count - 1].GetComponentInChildren<WeaponsManager>().allow_weapons = allow_weapons;
+            alive_ships[alive_ships.Count - 1].GetComponentInChildren<WeaponsManager>().projectile_barrier = projectile_barrier;
+            alive_ships[alive_ships.Count - 1].GetComponentInChildren<Deplacement>().column_positions = column_positions;
         }
         if (nb_ships == 1)
         {
@@ -69,6 +78,7 @@ public class ShipSpawner : MonoBehaviour
 
             if (alive_ships.Count == 0)
             {
+                Debug.Log("Reloading game");
                 ReloadGame();
             }
         }
@@ -84,7 +94,7 @@ public class ShipSpawner : MonoBehaviour
 
         //Pause the obstacle spawner and destroy the asteroids
         obstacle_spawner.enabled = false;
-        DestroyObstacles();
+        DestroyObstaclesAndShips();
 
         SpawnShips();
 
@@ -92,14 +102,14 @@ public class ShipSpawner : MonoBehaviour
         obstacle_spawner.enabled = true;
     }
 
-    private void DestroyObstacles()
+    private void DestroyObstaclesAndShips()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            GameObject obstacle = transform.GetChild(i).gameObject;
-            if (obstacle.tag == "Obstacle" || obstacle.tag == "Undestructible")
+            GameObject object_to_destroy = transform.GetChild(i).gameObject;
+            if (object_to_destroy.tag == "Asteroid" || object_to_destroy.tag == "Undestructible" || object_to_destroy.tag == "Player")
             {
-                Destroy(obstacle);
+                Destroy(object_to_destroy);
             }
         }
     }

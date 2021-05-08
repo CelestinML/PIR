@@ -11,7 +11,7 @@ public class mainMenu : MonoBehaviour
     }
     public void startGameIA()
     {
-        SceneManager.LoadScene("AIPlayerScene");
+        SceneManager.LoadScene("MenuAI");
     }
     public void quitGame()
     {

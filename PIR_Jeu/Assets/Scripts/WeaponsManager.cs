@@ -25,6 +25,8 @@ public class WeaponsManager : MonoBehaviour
     public int max_number_of_piercing = 5;
     private int number_of_piercing_shot;
 
+    public Transform projectile_barrier;
+
     private void Start()
     {
         audio_source = GameObject.FindWithTag("Sound").transform.GetChild(0).GetComponent<AudioSource>();
@@ -51,7 +53,11 @@ public class WeaponsManager : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 if (current_projectile == "basic")
-                    Instantiate(basic_projectile, gameObject.transform.position, Quaternion.identity);
+                {
+                    GameObject projectile = Instantiate(basic_projectile, gameObject.transform.position, Quaternion.identity);
+                    projectile.GetComponent<ProjectileBehaviour>().projectile_barrier = projectile_barrier;
+                }     
+                    
                 else if (current_projectile == "piercing")
                 {
                     Debug.Log("Test");

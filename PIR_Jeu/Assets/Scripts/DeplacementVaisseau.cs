@@ -13,6 +13,8 @@ public class DeplacementVaisseau : MonoBehaviour
 
     private Camera cam;
 
+    public Vector3 barrier;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -30,7 +32,7 @@ public class DeplacementVaisseau : MonoBehaviour
             fade -= fade_per_second * Time.fixedDeltaTime;
             material.SetFloat("_Fade", fade);      
         }
-        if (position_in_camera.y < -0.1)
+        if (transform.position.y < barrier.y)
         {
             Destroy(gameObject);
         }

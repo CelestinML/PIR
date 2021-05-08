@@ -12,6 +12,8 @@ public class Deplacement : MonoBehaviour
 
     private Transform ship_transform;
 
+    public List<Vector3> column_positions;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,4 +58,5 @@ public class Deplacement : MonoBehaviour
         last_input = Mathf.Lerp(last_input, 0, 5 * Time.fixedDeltaTime);
         ship_transform.localPosition += new Vector3(last_input, 0, 0) * Time.fixedDeltaTime * speed;
     }
+
 }

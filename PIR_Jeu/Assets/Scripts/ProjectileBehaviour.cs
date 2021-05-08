@@ -12,6 +12,8 @@ public class ProjectileBehaviour : MonoBehaviour
 
     private Camera cam;
 
+    public Transform projectile_barrier;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +23,7 @@ public class ProjectileBehaviour : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position += new Vector3(0, speed * Time.fixedDeltaTime, 0);
-        Vector3 position_in_camera = cam.WorldToViewportPoint(transform.position);
-        if (position_in_camera.y > 1.1)
+        if (transform.localPosition.y > projectile_barrier.position.y)
         {
             Destroy(gameObject);
         }

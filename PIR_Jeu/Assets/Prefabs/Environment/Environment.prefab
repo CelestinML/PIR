@@ -2139,6 +2139,7 @@ Transform:
   - {fileID: 4683719644503500232}
   - {fileID: 4683719645886984285}
   - {fileID: 3111317256508910910}
+  - {fileID: 3993354859855557974}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2167,6 +2168,8 @@ MonoBehaviour:
   cooldown_sprite: {fileID: 4683719644610344963}
   cooldown_text: {fileID: 4683719646087553951}
   health_ui: {fileID: 4683719644685894199}
+  projectile_barrier: {fileID: 3993354859855557974}
+  column_positions: {fileID: 4683719644607372916}
 --- !u!1 &4683719645886984284
 GameObject:
   m_ObjectHideFlags: 0
@@ -3050,6 +3053,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3111317256508910910}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8814951645296363391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3993354859855557974}
+  m_Layer: 0
+  m_Name: ProjectileBarrier
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3993354859855557974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8814951645296363391}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.32, y: 5.76, z: 27.744324}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4683719645765561734}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8829398405973853871
 GameObject:

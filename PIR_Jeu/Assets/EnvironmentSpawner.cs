@@ -16,9 +16,16 @@ public class EnvironmentSpawner : MonoBehaviour
 
     private Vector3 up_left = Vector3.zero, up_right = Vector3.zero, down_left = Vector3.zero, down_right = Vector3.zero;
 
+
     // Start is called before the first frame update
     void Start()
     {
+        //We fetch the options chosen by the user at the start
+        nb_environments = MenuAI.nb_environments;
+        allow_weapons = MenuAI.allow_weapons;
+        nb_ships_per_environment = MenuAI.nb_ships;
+
+        Debug.Log("nb ships per environment:" + nb_ships_per_environment);
         spawn_points = new List<Vector3>();
 
         Transform spawns = transform.GetChild(0);

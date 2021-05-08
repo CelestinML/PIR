@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   environment_prefab: {fileID: 4683719645765561729, guid: bc4f761c60155c74c8703b51fbe71f2d,
     type: 3}
-  nb_environments: 3
+  nb_environments: 1
   human_player: 0
   nb_ships_per_environment: 1
   allow_weapons: 1

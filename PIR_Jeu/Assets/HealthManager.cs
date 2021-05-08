@@ -84,7 +84,7 @@ public class HealthManager : MonoBehaviour
                 {
                     explosion_audio.Play(0);
                     animator.SetBool("dead", true);
-                    ship_spawner.HandleShipDeath(gameObject);
+                    ship_spawner.HandleShipDeath(transform.parent.gameObject);
                 }
                 else
                 {

@@ -44,6 +44,7 @@ public class ObstaclesSpawner : MonoBehaviour
         Transform spawns = transform.GetChild(1);
         for (int i = 0; i < spawns.childCount; i++)
         {
+            Debug.Log(spawns.GetChild(i).name);
             spawn_points.Add(spawns.GetChild(i).localPosition);
         }
 
@@ -71,13 +72,14 @@ public class ObstaclesSpawner : MonoBehaviour
         for (int i = 0; i < number_of_asteroids; i++)
         {
             //On choisit un lieu d'apparition de l'astéroide
-            int position_number = Random.Range(0, remaining_positions.Count - 1); //Les positions dans la liste sont entre 0 et 5
+            int position_number = Random.Range(0, remaining_positions.Count); //Les positions dans la liste sont entre 0 et 5
             //On instancie l'obstacle (1/5 que ce soit un débris spatial indestructible)
             GameObject obstacle;
             if (Random.Range(0, 5f) >= 1f)
             {
                 obstacle = Instantiate(asteroid, environment);
                 obstacle.transform.localPosition = remaining_positions[position_number];
+                obstacle.GetComponent<ChuteAsteroide>().barrier = barrier;
                 obstacle.GetComponent<ChuteAsteroide>().SetBonusManager(bonus_manager);
                 obstacle.transform.Rotate(new Vector3(0, 0, 1), Random.Range(0, 360f));
                 //On détermine la vitesse de chute de l'astéroide
@@ -93,6 +95,7 @@ public class ObstaclesSpawner : MonoBehaviour
             else
             {
                 obstacle = Instantiate(ennemy_ship, environment);
+                obstacle.GetComponent<DeplacementVaisseau>().barrier = barrier;
                 obstacle.transform.localPosition = remaining_positions[position_number];
                 //On détermine la vitesse de chute du vaisseau
                 obstacle.GetComponent<DeplacementVaisseau>().falling_speed = Random.Range(max_fall_speed, min_fall_speed);

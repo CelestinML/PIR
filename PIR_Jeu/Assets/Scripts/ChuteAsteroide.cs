@@ -21,6 +21,8 @@ public class ChuteAsteroide : MonoBehaviour
 
     private BonusManager bonus_manager;
 
+    public Vector3 barrier;
+
     public void SetBonusManager(BonusManager bonus_manager)
     {
         this.bonus_manager = bonus_manager;
@@ -38,7 +40,6 @@ public class ChuteAsteroide : MonoBehaviour
     {
         transform.Rotate(new Vector3(0, 0, 1), rotation_speed);
         transform.position += new Vector3(0, -(falling_speed * Time.fixedDeltaTime), 0);
-        Vector3 position_in_camera = cam.WorldToViewportPoint(transform.position);
         if (dissolving)
         {
             fade -= fade_per_second * Time.fixedDeltaTime;
@@ -48,7 +49,7 @@ public class ChuteAsteroide : MonoBehaviour
                 SpawnBonus();
             }
         }
-        if (position_in_camera.y < -0.1)
+        if (transform.localPosition.y < barrier.y)
         {
             Destroy(gameObject);
         }

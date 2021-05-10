@@ -13,7 +13,7 @@ public class UpdateGeneration
     private int nbChildrenPerBest = 10;
     private int nbRandom = 0;
     private float mutationIntensity = 0.1f;
-    private float mutationProba = 0.2f;
+    private float mutationProba = 0.1f;
 
     public MoveWithAI moveHandler;
     public ShipSpawnerTraining shipSpawner;

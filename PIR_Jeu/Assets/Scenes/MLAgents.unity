@@ -526,7 +526,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 1866583264}
-  vaisseau: {fileID: 1956508893}
 --- !u!4 &251149624
 Transform:
   m_ObjectHideFlags: 0
@@ -718,10 +717,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a69ad766d89b7a4449d44c3103f8e938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroide1: {fileID: 2174577356029533154, guid: 681fc8b634271bb42b362d5ca003f5fa,
-    type: 3}
-  vaisseau: {fileID: 7433270322230581915, guid: b81f18966cc37af4eaf476110ce3776f,
-    type: 3}
+  asteroid: {fileID: 0}
+  ennemy_ship: {fileID: 0}
+  bonus_manager: {fileID: 0}
+  max_asteroids: 4
   min_fall_speed: 3
   max_fall_speed: 3
   min_rotation_speed: 1
@@ -800,8 +799,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c745adb28013add4195caaa0873a724a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacles: []
-  vaisseau: {fileID: 1956508893}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2535,7 +2532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38aec8eb21e01094ab2586ecc75914da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToStart: AIPlayerScene
 --- !u!114 &1866583266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2900,6 +2896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  column_positions: []
 --- !u!95 &1956508896
 Animator:
   serializedVersion: 3
@@ -3069,14 +3066,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd2ffe24f01d37d409c9cd113d129c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hit_audio: {fileID: 1438592193}
-  explosion_audio: {fileID: 543770722}
-  vies_ui: {fileID: 639418267}
-  score_ui: {fileID: 1190912598}
-  gameOver_manager: {fileID: 251149622}
-  shield: {fileID: 745277601}
-  points_de_vie: 3
-  temps_invincibilite: 1
 --- !u!1 &1976274103
 GameObject:
   m_ObjectHideFlags: 0

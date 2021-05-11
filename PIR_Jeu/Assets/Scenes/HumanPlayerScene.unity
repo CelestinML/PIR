@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -526,6 +526,11 @@ MonoBehaviour:
   nb_ships_per_environment: 1
   allow_weapons: 1
   activate_bonuses: 1
+  ai_type: 
+  agents:
+  - {fileID: 6036618275138000994, guid: 83fe91217ffeed048846898f93b148ee, type: 3}
+  - {fileID: 2002962505436076908, guid: 644944449d32cd9499744f57f00f398d, type: 3}
+  - {fileID: 6036618275138000994, guid: 5846eab44624f91439827ac81a84392c, type: 3}
 --- !u!4 &736951760
 Transform:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 3727189555370318959}
   - component: {fileID: 2174577356029533157}
   - component: {fileID: -3626962198837007306}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: asteroide
   m_TagString: Asteroid
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ MonoBehaviour:
     type: 3}
   shield_bonus: {fileID: 4542263872465275694, guid: ed5089ec23202de47a5b2a56894de8d3,
     type: 3}
-  fade_per_second: 2
+  barrier: {x: 0, y: 0, z: 0}
 --- !u!95 &-3626962198837007306
 Animator:
   serializedVersion: 3

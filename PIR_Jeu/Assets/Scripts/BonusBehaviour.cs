@@ -7,6 +7,8 @@ public class BonusBehaviour : MonoBehaviour
     public string bonus_type;
     public string projectile_name;
 
+    public Transform barrier;
+
     public float falling_speed = 3;
 
     private Camera cam;
@@ -20,7 +22,7 @@ public class BonusBehaviour : MonoBehaviour
         gameObject.transform.position += new Vector3(0, -falling_speed * Time.fixedDeltaTime, 0);
 
         Vector3 position_in_camera = cam.WorldToViewportPoint(transform.position);
-        if (position_in_camera.y < -0.1)
+        if (transform.localPosition.y < barrier.localPosition.y)
         {
             Destroy(gameObject);
         }

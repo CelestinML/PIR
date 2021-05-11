@@ -70,8 +70,8 @@ public class ChuteAsteroide : MonoBehaviour
         else if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponentInChildren<HealthManager>().ReceiveDamage(1);
-            DisableColliders();
-            animator.SetBool("Exploding", true);
+            //DisableColliders();
+            //animator.SetBool("Exploding", true);
         }
         
     }

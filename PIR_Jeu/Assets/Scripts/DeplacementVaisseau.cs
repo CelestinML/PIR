@@ -11,28 +11,24 @@ public class DeplacementVaisseau : MonoBehaviour
     public float fade_per_second = 2;
     private float fade = 1;
 
-    private Camera cam;
-
     public Vector3 barrier;
 
     // Start is called before the first frame update
     private void Start()
     {
         material = GetComponent<Renderer>().material;
-        cam = Camera.main;
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
         transform.position += new Vector3(0, -(falling_speed * Time.fixedDeltaTime), 0);
-        Vector3 position_in_camera = cam.WorldToViewportPoint(transform.position);
         if (dissolving)
         {
             fade -= fade_per_second * Time.fixedDeltaTime;
             material.SetFloat("_Fade", fade);      
         }
-        if (transform.position.y < barrier.y)
+        if (transform.localPosition.y < barrier.y)
         {
             Destroy(gameObject);
         }
@@ -43,9 +39,7 @@ public class DeplacementVaisseau : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponentInChildren<HealthManager>().ReceiveDamage(1);
-            DisableColliders();
-            
-            //Lancer une animation de destruction du vaisseau ?
+            //DisableColliders();
         }
     }
 

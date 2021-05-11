@@ -9,6 +9,7 @@ TagManager:
   - Shield
   - Sound
   - Position
+  - Generation
   layers:
   - Default
   - TransparentFX
@@ -21,10 +22,10 @@ TagManager:
   - Background
   - Obstacles
   - Bonus
-  - Joueur
+  - Player
   - Shield
-  - 
-  - 
+  - InvinciblePlayer
+  - Bords
   - 
   - 
   - 

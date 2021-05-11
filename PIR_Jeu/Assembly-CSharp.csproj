@@ -64,28 +64,40 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\DeathHandler.cs" />
-    <Compile Include="Assets\DifficultyManager.cs" />
-    <Compile Include="Assets\EnvironmentSpawner.cs" />
-    <Compile Include="Assets\FindCamera.cs" />
-    <Compile Include="Assets\HealthManager.cs" />
-    <Compile Include="Assets\ScoreManager.cs" />
+    <Compile Include="Assets\Billiev2.cs" />
+    <Compile Include="Assets\GenerationManager.cs" />
+    <Compile Include="Assets\InstantiateUpdateGeneration.cs" />
+    <Compile Include="Assets\Kevin.cs" />
+    <Compile Include="Assets\MoveWithAI.cs" />
+    <Compile Include="Assets\RaycastObservation.cs" />
+    <Compile Include="Assets\Scripts\AgentReinforcement.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\BonusBehaviour.cs" />
     <Compile Include="Assets\Scripts\BonusManager.cs" />
     <Compile Include="Assets\Scripts\ChuteAsteroide.cs" />
-    <Compile Include="Assets\Scripts\Deplacement\Deplacement.cs" />
-    <Compile Include="Assets\Scripts\Deplacement\DeplacementDiscret.cs" />
+    <Compile Include="Assets\Scripts\DeathHandler.cs" />
     <Compile Include="Assets\Scripts\DeplacementVaisseau.cs" />
+    <Compile Include="Assets\Scripts\DifficultyManager.cs" />
+    <Compile Include="Assets\Scripts\EnvironmentSpawner.cs" />
+    <Compile Include="Assets\Scripts\FindCamera.cs" />
+    <Compile Include="Assets\Scripts\FindMovementScript.cs" />
     <Compile Include="Assets\Scripts\GameOverManager.cs" />
     <Compile Include="Assets\Scripts\GameOverMenu.cs" />
+    <Compile Include="Assets\Scripts\HealthManager.cs" />
+    <Compile Include="Assets\Scripts\MenuAI.cs" />
+    <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\ObstaclesSpawner.cs" />
+    <Compile Include="Assets\Scripts\Overlap.cs" />
     <Compile Include="Assets\Scripts\ProjectileBehaviour.cs" />
+    <Compile Include="Assets\Scripts\RewardCalculator.cs" />
+    <Compile Include="Assets\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\ShieldBehaviour.cs" />
     <Compile Include="Assets\Scripts\ShieldManager.cs" />
+    <Compile Include="Assets\Scripts\ShipSpawner.cs" />
+    <Compile Include="Assets\Scripts\ShowValue.cs" />
     <Compile Include="Assets\Scripts\WeaponsManager.cs" />
     <Compile Include="Assets\Scripts\mainMenu.cs" />
-    <Compile Include="Assets\ShipSpawner.cs" />
+    <Compile Include="Assets\UpdateGeneration.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -289,6 +301,24 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.19f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/PackageCache/com.unity.barracuda@1.1.2-preview/Barracuda/Runtime/Plugins/ProtoBuffer/Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Unsafe">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/PackageCache/com.unity.burst@1.3.4/Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Abstractions">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/PackageCache/com.unity.ml-agents@1.6.0-preview/Plugins/System.IO.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Abstractions.TestingHelpers">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/PackageCache/com.unity.ml-agents@1.6.0-preview/Plugins/System.IO.Abstractions.TestingHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Core">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/PackageCache/com.unity.ml-agents@1.6.0-preview/Plugins/ProtoBuffer/Grpc.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Interactive.Async">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/PackageCache/com.unity.ml-agents@1.6.0-preview/Plugins/ProtoBuffer/System.Interactive.Async.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.19f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -636,112 +666,145 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.19f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Barracuda.MacBLAS">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Barracuda.MacBLAS.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Barracuda.Editor">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Barracuda.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Editor">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Path.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="PsdPlugin">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Barracuda">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Barracuda.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Barracuda.iOSBLAS">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Barracuda.iOSBLAS.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ML-Agents.CommunicatorObjects">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.ML-Agents.CommunicatorObjects.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Barracuda.BurstBLAS">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Barracuda.BurstBLAS.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Psdimporter.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ML-Agents.Editor">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.ML-Agents.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ML-Agents">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.ML-Agents.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/Cours/INSA/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Barracuda.ONNX">
+      <HintPath>D:/Cours/PIR/PIR/PIR_Jeu/Library/ScriptAssemblies/Unity.Barracuda.ONNX.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

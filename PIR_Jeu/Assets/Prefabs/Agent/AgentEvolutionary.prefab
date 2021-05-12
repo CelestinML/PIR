@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 394768821295610799}
   - component: {fileID: 1219659629605827813}
   m_Layer: 11
-  m_Name: AgentEvolutionnary
+  m_Name: AgentEvolutionary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,7 +245,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   raycastObservation: {fileID: 9213912879015284328}
-  generationManager: {fileID: 0}
 --- !u!114 &1219659629605827813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,7 +309,7 @@ MonoBehaviour:
   raycast_top: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 16896
   draw_raycasts: 0
   nb_raycasts: 0
   min_angle: 0

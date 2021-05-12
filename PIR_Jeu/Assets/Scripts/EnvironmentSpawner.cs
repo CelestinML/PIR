@@ -91,6 +91,10 @@ if (mainMenu.human_player)
         {
             Camera.main.orthographicSize += 0.5f;
         }
+        if (nb_environments == 12)
+        {
+            Camera.main.orthographicSize = 28f;
+        }
     }
 
     private GameObject FindAgent()

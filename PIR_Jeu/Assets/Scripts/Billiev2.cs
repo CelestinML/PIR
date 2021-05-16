@@ -35,7 +35,7 @@ public class Billiev2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 30f;
+        //Time.timeScale = 30f;
 
         environment = transform.parent.parent;
 

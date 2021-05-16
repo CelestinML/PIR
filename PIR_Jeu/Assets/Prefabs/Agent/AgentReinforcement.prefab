@@ -401,8 +401,8 @@ MonoBehaviour:
   raycast_top: {fileID: 3372224019670051551}
   layerMask:
     serializedVersion: 2
-    m_Bits: 16896
-  draw_raycasts: 0
+    m_Bits: 512
+  draw_raycasts: 1
   nb_raycasts: 0
   min_angle: 0
   max_angle: 0

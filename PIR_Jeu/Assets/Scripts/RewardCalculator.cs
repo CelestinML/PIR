@@ -29,14 +29,12 @@ public class RewardCalculator : MonoBehaviour
 
     void Update()
     {
-        float reward = 0;
-
         RaycastHit2D hit_left = Physics2D.Raycast(raycast_left.position, Vector2.up, raycast_distance, layerMask);
-        Debug.DrawLine(raycast_left.position, raycast_left.position + Vector3.up * raycast_distance, Color.green);
+        //Debug.DrawLine(raycast_left.position, raycast_left.position + Vector3.up * raycast_distance, Color.green);
         RaycastHit2D hit_center = Physics2D.Raycast(raycast_center.position, Vector2.up, raycast_distance, layerMask);
-        Debug.DrawLine(raycast_center.position, raycast_center.position + Vector3.up * raycast_distance, Color.green);
+        //Debug.DrawLine(raycast_center.position, raycast_center.position + Vector3.up * raycast_distance, Color.green);
         RaycastHit2D hit_right = Physics2D.Raycast(raycast_right.position, Vector2.up, raycast_distance, layerMask);
-        Debug.DrawLine(raycast_right.position, raycast_right.position + Vector3.up * raycast_distance, Color.green);
+        //Debug.DrawLine(raycast_right.position, raycast_right.position + Vector3.up * raycast_distance, Color.green);
 
         if (hit_left.collider == null && hit_center.collider == null && hit_right.collider == null)
         {

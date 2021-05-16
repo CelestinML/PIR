@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ShipSpawner : MonoBehaviour
 {
+    private List<float> scores;
+
     public int nb_ships = 1;
 
     public bool allow_weapons = true;
@@ -32,7 +34,10 @@ public class ShipSpawner : MonoBehaviour
     public Transform border_left, border_right;
 
     private void Start()
-    {//CALCULER LES POSITIONS DES COLONNES
+    {
+        //CALCULER LES POSITIONS DES COLONNES
+
+        scores = new List<float>();
 
         if (!allow_weapons)
         {
@@ -101,7 +106,8 @@ public class ShipSpawner : MonoBehaviour
 
     public void ReloadGame()
     {
-        //Do something with the scores
+        EnvironmentSpawner.scores.AddRange(scores);
+        scores.Clear();
 
         ships = new List<GameObject>();
 

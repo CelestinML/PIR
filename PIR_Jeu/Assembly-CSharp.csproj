@@ -64,14 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Billiev2.cs" />
-    <Compile Include="Assets\GenerationManager.cs" />
-    <Compile Include="Assets\InstantiateUpdateGeneration.cs" />
-    <Compile Include="Assets\Kevin.cs" />
-    <Compile Include="Assets\MoveWithAI.cs" />
-    <Compile Include="Assets\RaycastObservation.cs" />
     <Compile Include="Assets\Scripts\AgentReinforcement.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Billiev2.cs" />
     <Compile Include="Assets\Scripts\BonusBehaviour.cs" />
     <Compile Include="Assets\Scripts\BonusManager.cs" />
     <Compile Include="Assets\Scripts\ChuteAsteroide.cs" />
@@ -83,21 +78,26 @@
     <Compile Include="Assets\Scripts\FindMovementScript.cs" />
     <Compile Include="Assets\Scripts\GameOverManager.cs" />
     <Compile Include="Assets\Scripts\GameOverMenu.cs" />
+    <Compile Include="Assets\Scripts\GenerationManager.cs" />
     <Compile Include="Assets\Scripts\HealthManager.cs" />
+    <Compile Include="Assets\Scripts\InstantiateUpdateGeneration.cs" />
+    <Compile Include="Assets\Scripts\Kevin.cs" />
     <Compile Include="Assets\Scripts\MenuAI.cs" />
+    <Compile Include="Assets\Scripts\MoveWithAI.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\ObstaclesSpawner.cs" />
     <Compile Include="Assets\Scripts\Overlap.cs" />
     <Compile Include="Assets\Scripts\ProjectileBehaviour.cs" />
+    <Compile Include="Assets\Scripts\RaycastObservation.cs" />
     <Compile Include="Assets\Scripts\RewardCalculator.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\ShieldBehaviour.cs" />
     <Compile Include="Assets\Scripts\ShieldManager.cs" />
     <Compile Include="Assets\Scripts\ShipSpawner.cs" />
     <Compile Include="Assets\Scripts\ShowValue.cs" />
+    <Compile Include="Assets\Scripts\UpdateGeneration.cs" />
     <Compile Include="Assets\Scripts\WeaponsManager.cs" />
     <Compile Include="Assets\Scripts\mainMenu.cs" />
-    <Compile Include="Assets\UpdateGeneration.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

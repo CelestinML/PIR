@@ -133,6 +133,10 @@ if (mainMenu.human_player)
         {
             str = str + scores[i].ToString();
             str += "\n";
+            if ((i+1) % nb_ships_per_environment == 0)
+            {
+                str += "*---*\n";
+            }
         }
 
         if (!File.Exists(path))

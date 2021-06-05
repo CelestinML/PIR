@@ -35,7 +35,7 @@ public class ShipSpawner : MonoBehaviour
 
     private void Start()
     {
-        //CALCULER LES POSITIONS DES COLONNES
+        Debug.Log("Agent = " + agent.name);
 
         scores = new List<float>();
 

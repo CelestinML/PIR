@@ -17,8 +17,16 @@ public class AgentReinforcement : Agent
     private Transform ship;
     public Transform left_border, right_border;
 
+    public int nbObsRaycasts = 37;
+    public float obsAngle = 90f;
+
     public override void OnEpisodeBegin()
     {
+        //If you want an observation raycast going straight forward, you should put an odd number
+        raycastObservation.nbRaycasts = nbObsRaycasts;
+        raycastObservation.minAngle = -obsAngle;
+        raycastObservation.maxAngle = obsAngle;
+
         left_border = transform.parent.parent.GetComponent<ShipSpawner>().border_left;
         right_border = transform.parent.parent.GetComponent<ShipSpawner>().border_right;
 
@@ -57,13 +65,11 @@ public class AgentReinforcement : Agent
         foreach (GameObject obstacle in obstacles)
             sensor.AddObservation(Vector3.Distance(ship.position, obstacle.transform.localPosition));*/
 
-        List<Vector3> obstacles_infos = raycastObservation.GetPositions();
-        foreach (Vector3 info in obstacles_infos)
+        List<Vector3> infos = raycastObservation.GetPositions();
+        foreach (Vector3 info in infos)
         {
             sensor.AddObservation(info);
-            //Debug.Log("Info : " + info);
         }
-
     }
 
     /*public override void Heuristic(in ActionBuffers actionsOut)

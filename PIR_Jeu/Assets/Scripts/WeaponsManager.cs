@@ -74,7 +74,8 @@ public class WeaponsManager : MonoBehaviour
                     }
                     if (piercing_shot_ui != null)
                         piercing_shot_ui.GetComponent<TextMeshProUGUI>().text = "x " + (max_number_of_piercing - number_of_piercing_shot);
-                    Instantiate(piercing_projectile, gameObject.transform.position, Quaternion.identity);
+                    GameObject projectile = Instantiate(piercing_projectile, gameObject.transform.position, Quaternion.identity);
+                    projectile.GetComponent<ProjectileBehaviour>().projectile_barrier = projectile_barrier;
                 }
                 audio_source.Play(0);
                 can_shoot = false;

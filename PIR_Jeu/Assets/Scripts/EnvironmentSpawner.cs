@@ -27,19 +27,22 @@ public class EnvironmentSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-if (mainMenu.human_player)
+        if (mainMenu.human_player)
         {
             human_player = true;
             nb_environments = 1;
             allow_weapons = true;
+            activate_bonuses = true;
             nb_ships_per_environment = 1;
         }
         else
         {
+            Time.timeScale = MenuAI.timeScale;
             //We fetch the options chosen by the user at the start
             human_player = false;
             nb_environments = MenuAI.nb_environments;
             allow_weapons = MenuAI.allow_weapons;
+            activate_bonuses = MenuAI.allow_bonuses;
             nb_ships_per_environment = MenuAI.nb_ships;
             ai_type = MenuAI.ai;
         }
@@ -63,6 +66,7 @@ if (mainMenu.human_player)
             environment.GetComponent<ShipSpawner>().human_player = human_player;
             environment.GetComponent<ShipSpawner>().nb_ships = nb_ships_per_environment;
             environment.GetComponent<ShipSpawner>().allow_weapons = allow_weapons;
+            environment.GetComponentInChildren<BonusManager>().activate_bonuses = activate_bonuses;
             if (!human_player)
                 environment.GetComponent<ShipSpawner>().agent = FindAgent();
 

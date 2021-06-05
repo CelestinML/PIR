@@ -10,7 +10,7 @@ public class mainMenu : MonoBehaviour
     public void startGamePlayer()
     {
         human_player = true;
-        SceneManager.LoadScene("HumanPlayerScene");
+        SceneManager.LoadScene("PlayScene");
 
     }
     public void startGameIA()

@@ -21,7 +21,7 @@ public class BonusManager : MonoBehaviour
     {
         if (activate_bonuses)
         {
-            if (Random.value < 1f)
+            if (Random.value < 0.1f)
             {
                 GameObject bonus = Instantiate(bonus_prefabs[Random.Range(0, bonus_prefabs.Count)], environment);
                 bonus.GetComponent<BonusBehaviour>().barrier = barrier;

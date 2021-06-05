@@ -325,6 +325,8 @@ MonoBehaviour:
   raycastObservation: {fileID: 9213912879015284328}
   left_border: {fileID: 0}
   right_border: {fileID: 0}
+  nbObsRaycasts: 37
+  obsAngle: 90
 --- !u!114 &7137678994405219388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45652ade3e75896409a486deddaee8ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycast_distance: 10
+  raycastDistance: 10
   raycast_left: {fileID: 3878276396435837715}
   raycast_center: {fileID: 7403108637905960961}
   raycast_right: {fileID: 6103045776066417090}
@@ -403,6 +405,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   draw_raycasts: 1
-  nb_raycasts: 0
-  min_angle: 0
-  max_angle: 0
+  nbRaycasts: 37
+  minAngle: -90
+  maxAngle: 90

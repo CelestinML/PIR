@@ -27,13 +27,15 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        //Collecting the input if a human is playing
         input = Input.GetAxisRaw("Horizontal");
+        //You should rather use this input method if you decided to use SetInput
+        //input = Input.GetAxis("Horizontal");
     }
 
     private void FixedUpdate()
     {
-        //Debug.Log(input);
-        //ship_transform.localPosition += new Vector3(1, 0, 0) * Time.fixedDeltaTime * speed * input;
+        /* If you don't use the SetInput method */
         if (human_player)
         {
             if (input > 0)
@@ -43,6 +45,8 @@ public class Movement : MonoBehaviour
             else
                 DoNotMove();
         }
+        /* If you do use the SetInput method */
+        //ship_transform.localPosition += new Vector3(input * Time.fixedDeltaTime * speed, 0f, 0f);
     }
 
     //On définit chaque action possible clairement pour l'agent
@@ -64,4 +68,8 @@ public class Movement : MonoBehaviour
         ship_transform.localPosition += new Vector3(last_input, 0, 0) * Time.fixedDeltaTime * speed;
     }
 
+    public void SetInput(float wanted_input)
+    {
+        input = wanted_input;
+    }
 }

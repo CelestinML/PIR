@@ -35,8 +35,6 @@ public class ShipSpawner : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Agent = " + agent.name);
-
         scores = new List<float>();
 
         if (!allow_weapons)

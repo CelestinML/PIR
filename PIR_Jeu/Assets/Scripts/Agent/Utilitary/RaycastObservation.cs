@@ -35,7 +35,6 @@ public class RaycastObservation : MonoBehaviour
         for (float angle = minAngle; angle <= maxAngle; angle += angleIncr)
         {
             Debug.Log("Launching at angle : " + angle);
-            Debug.Break();
             float distance = raycastDistance;
             //If the raycast is thrown towards left or right, it might interfer with other
             //environments. So we shorten the raycasts a little bit.

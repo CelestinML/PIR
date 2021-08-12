@@ -405,6 +405,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   draw_raycasts: 1
-  nbRaycasts: 37
+  nbRaycasts: 36
   minAngle: -90
   maxAngle: 90
